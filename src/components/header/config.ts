@@ -4,12 +4,12 @@ const links: Link[] = [
   {
     title: 'Home',
     href: '/',
-    thumbnail: '/assets/projects-screenshots/Sangeetaprojects/LandingPage.png'
+    thumbnail: '/assets/projects-screenshots/Adarshprojects/LandingPage.png'
   },
   {
     title: 'About',
     href: '/#about',
-    thumbnail: '/assets/projects-screenshots/Sangeetaprojects/LandingPage.png'
+    thumbnail: '/assets/projects-screenshots/Adarshprojects/LandingPage.png'
   },
   {
     title: 'Skills',

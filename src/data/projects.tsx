@@ -316,12 +316,12 @@ const projects: Project[] = [
     id: "Healthcare App",
     category: "Healthcare App",
     title: "My Healthcare App",
-    src: "/assets/projects-screenshots/Sangeetaprojects/DoctorSelection.png",
+    src: "/assets/projects-screenshots/Adarshprojects/DoctorSelection.png",
     screenshots: [
-      "/assets/projects-screenshots/Sangeetaprojects/DoctorSelection.png",
+      "/assets/projects-screenshots/Adarshprojects/DoctorSelection.png",
     ],
     live: "", // Replace with actual healthcare app live URL
-    github: "https://github.com/Sangeeta-Prajapati/HealthCare-Project",
+    github: "https://github.com/Adarsh/HealthCare-Project",
     skills: {
       frontend: [
         PROJECT_SKILLS.react, // React.js
@@ -356,8 +356,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/DoctorSelection.png`,
-              `${BASE_PATH}/Sangeetaprojects/AppointmentBooking.png`,
+              `${BASE_PATH}/Adarshprojects/DoctorSelection.png`,
+              `${BASE_PATH}/Adarshprojects/AppointmentBooking.png`,
             ]}
           />
           <TypographyH3 className="my-4 ">Secure Authentication</TypographyH3>
@@ -367,7 +367,7 @@ const projects: Project[] = [
             Facebook, or Apple accounts while maintaining data privacy and
             security.
           </p>
-          <SlideShow images={[`${BASE_PATH}/Sangeetaprojects/SignUp&In.png`]} />
+          <SlideShow images={[`${BASE_PATH}/Adarshprojects/SignUp&In.png`]} />
           <TypographyH3 className="my-4 mt-8">Key Features</TypographyH3>
 
           <p className="font-mono mb-2">
@@ -377,8 +377,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/AppointmentBooking.png`,
-              `${BASE_PATH}/Sangeetaprojects/AppointmentPreview.png`,
+              `${BASE_PATH}/Adarshprojects/AppointmentBooking.png`,
+              `${BASE_PATH}/Adarshprojects/AppointmentPreview.png`,
             ]}
           />
           <p className="font-mono mb-2 mt-8 text-center">
@@ -395,12 +395,12 @@ const projects: Project[] = [
     id: "Matchmaking Pro",
     category: "Matrimonial Software",
     title: "Matchmaking Pro",
-    src: "/assets/projects-screenshots/Sangeetaprojects/MP-Dashboard.png",
+    src: "/assets/projects-screenshots/Adarshprojects/MP-Dashboard.png",
     screenshots: [
-      "/assets/projects-screenshots/Sangeetaprojects/MP-Dashboard.png",
+      "/assets/projects-screenshots/Adarshprojects/MP-Dashboard.png",
     ],
     live: "", // Replace with actual matrimonial app live URL
-    github: "https://github.com/Sangeeta-Prajapati/Matrimonial-Project",
+    github: "https://github.com/Adarsh/Matrimonial-Project",
     skills: {
       frontend: [
         PROJECT_SKILLS.react, // React.js
@@ -436,8 +436,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/MP-Dashboard.png`,
-              `${BASE_PATH}/Sangeetaprojects/ProfileView.png`,
+              `${BASE_PATH}/Adarshprojects/MP-Dashboard.png`,
+              `${BASE_PATH}/Adarshprojects/ProfileView.png`,
             ]}
           />
           <TypographyH3 className="my-4 ">Personalized Support</TypographyH3>
@@ -448,7 +448,7 @@ const projects: Project[] = [
             reference.
           </p>
           <SlideShow
-            images={[`${BASE_PATH}/Sangeetaprojects/CallRecording.png`]}
+            images={[`${BASE_PATH}/Adarshprojects/CallRecording.png`]}
           />
           <TypographyH3 className="my-4 mt-8">Key Features</TypographyH3>
 
@@ -459,8 +459,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/MP-Dashboard.png`,
-              `${BASE_PATH}/Sangeetaprojects/LiveStatus.png`,
+              `${BASE_PATH}/Adarshprojects/MP-Dashboard.png`,
+              `${BASE_PATH}/Adarshprojects/LiveStatus.png`,
             ]}
           />
           <p className="font-mono mb-2 mt-8 text-center">
@@ -478,12 +478,12 @@ const projects: Project[] = [
     id: "portfolio",
     category: "Portfolio",
     title: "My Portfolio",
-    src: "/assets/projects-screenshots/Sangeetaprojects/LandingPage.png",
+    src: "/assets/projects-screenshots/Adarshprojects/LandingPage.png",
     screenshots: [
-      "/assets/projects-screenshots/Sangeetaprojects/LandingPage.png",
+      "/assets/projects-screenshots/Adarshprojects/LandingPage.png",
     ],
     live: "", // Replace with actual portfolio live URL
-    github: "https://github.com/Sangeeta-Prajapati/Sangeeta-Portfolio.git",
+    github: "https://github.com/Adarsh/Adarsh-Portfolio.git",
     skills: {
       frontend: [
         PROJECT_SKILLS.ts,
@@ -515,7 +515,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/LandingPage.png`,
+              `${BASE_PATH}/Adarshprojects/LandingPage.png`,
               `${BASE_PATH}/portfolio/skills.png`,
             ]}
           />
@@ -531,8 +531,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/Projects.png`,
-              `${BASE_PATH}/Sangeetaprojects/ProjectView.png`,
+              `${BASE_PATH}/Adarshprojects/Projects.png`,
+              `${BASE_PATH}/Adarshprojects/ProjectView.png`,
             ]}
           />
           <p className="font-mono mb-2 mt-8 text-center">
@@ -548,13 +548,13 @@ const projects: Project[] = [
     id: "weather-forecast",
     category: "weather-forecast",
     title: "Weather Explorer",
-    src: "/assets/projects-screenshots/Sangeetaprojects/weatherLandingPage.png",
+    src: "/assets/projects-screenshots/Adarshprojects/weatherLandingPage.png",
     screenshots: [
-      "/assets/projects-screenshots/Sangeetaprojects/weatherLandingPage.png",
+      "/assets/projects-screenshots/Adarshprojects/weatherLandingPage.png",
     ],
     live: "https://weather-data-forecast-frontend-assgn.vercel.app/",
     github:
-      "https://github.com/Sangeeta-Prajapati/WeatherData-Forecast-Frontend-Assgn",
+      "https://github.com/Adarsh/WeatherData-Forecast-Frontend-Assgn",
     skills: {
       frontend: [
         PROJECT_SKILLS.react, // React.js
@@ -590,8 +590,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/weatherLandingPage.png`,
-              `${BASE_PATH}/Sangeetaprojects/weatherExplore.png`,
+              `${BASE_PATH}/Adarshprojects/weatherLandingPage.png`,
+              `${BASE_PATH}/Adarshprojects/weatherExplore.png`,
             ]}
           />
           <TypographyH3 className="my-4 ">Smart Location Search</TypographyH3>
@@ -602,8 +602,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/weatherSearch.png`,
-              `${BASE_PATH}/Sangeetaprojects/WeatherForecast.png`,
+              `${BASE_PATH}/Adarshprojects/weatherSearch.png`,
+              `${BASE_PATH}/Adarshprojects/WeatherForecast.png`,
             ]}
           />
 
@@ -616,9 +616,9 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/weatherBox.png`,
-              `${BASE_PATH}/Sangeetaprojects/weatherSearch.png`,
-              `${BASE_PATH}/Sangeetaprojects/WeatherForecast2.png`,
+              `${BASE_PATH}/Adarshprojects/weatherBox.png`,
+              `${BASE_PATH}/Adarshprojects/weatherSearch.png`,
+              `${BASE_PATH}/Adarshprojects/WeatherForecast2.png`,
             ]}
           />
           <p className="font-mono mb-2 mt-8 text-center">
@@ -634,13 +634,13 @@ const projects: Project[] = [
     id: "crypto-currency-tracker",
     category: "crypto-currency-tracker",
     title: "Crypto Dashboard",
-    src: "/assets/projects-screenshots/Sangeetaprojects/cryptoDashboard.png",
+    src: "/assets/projects-screenshots/Adarshprojects/cryptoDashboard.png",
     screenshots: [
-      "/assets/projects-screenshots/Sangeetaprojects/cryptoDashboard.png",
+      "/assets/projects-screenshots/Adarshprojects/cryptoDashboard.png",
     ],
     live: "https://reacts-dashboard-crypo-project.vercel.app/",
     github:
-      "https://github.com/Sangeeta-Prajapati/Reacts-Dashboard--Crypo--Project",
+      "https://github.com/Adarsh/Reacts-Dashboard--Crypo--Project",
     skills: {
       frontend: [
         PROJECT_SKILLS.react, // React.js
@@ -676,8 +676,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/cryptoDashboard.png`,
-              `${BASE_PATH}/Sangeetaprojects/selectCoin.png`,
+              `${BASE_PATH}/Adarshprojects/cryptoDashboard.png`,
+              `${BASE_PATH}/Adarshprojects/selectCoin.png`,
             ]}
           />
           <TypographyH3 className="my-4 ">Advanced Coin Selection</TypographyH3>
@@ -689,8 +689,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/cryptoCurrancy.png`,
-              `${BASE_PATH}/Sangeetaprojects/cryptoDownloads.png`,
+              `${BASE_PATH}/Adarshprojects/cryptoCurrancy.png`,
+              `${BASE_PATH}/Adarshprojects/cryptoDownloads.png`,
             ]}
           />
           <TypographyH3 className="my-4 mt-8">
@@ -704,9 +704,9 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/marketPrice.png`,
-              `${BASE_PATH}/Sangeetaprojects/marketVolume.png`,
-              `${BASE_PATH}/Sangeetaprojects/marketCap.png`,
+              `${BASE_PATH}/Adarshprojects/marketPrice.png`,
+              `${BASE_PATH}/Adarshprojects/marketVolume.png`,
+              `${BASE_PATH}/Adarshprojects/marketCap.png`,
             ]}
           />
           <p className="font-mono mb-2 mt-8 text-center">
@@ -723,12 +723,12 @@ const projects: Project[] = [
     id: "electra-shop",
     category: "electra-shop",
     title: "Electra Homepage",
-    src: "/assets/projects-screenshots/Sangeetaprojects/ElectraHomePage.png",
+    src: "/assets/projects-screenshots/Adarshprojects/ElectraHomePage.png",
     screenshots: [
-      "/assets/projects-screenshots/Sangeetaprojects/ElectraHomePage.png",
+      "/assets/projects-screenshots/Adarshprojects/ElectraHomePage.png",
     ],
     live: "https://electra-shop-animated.vercel.app/",
-    github: "https://github.com/Sangeeta-Prajapati/ElectraShop-animated",
+    github: "https://github.com/Adarsh/ElectraShop-animated",
     skills: {
       frontend: [
         PROJECT_SKILLS.react, // React.js
@@ -764,8 +764,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/ElectraHomePage.png`,
-              `${BASE_PATH}/Sangeetaprojects/electraPolicies.png`,
+              `${BASE_PATH}/Adarshprojects/ElectraHomePage.png`,
+              `${BASE_PATH}/Adarshprojects/electraPolicies.png`,
             ]}
           />
           <TypographyH3 className="my-4 ">
@@ -779,8 +779,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/TrendingProducts.png`,
-              `${BASE_PATH}/Sangeetaprojects/electraDeals.png`,
+              `${BASE_PATH}/Adarshprojects/TrendingProducts.png`,
+              `${BASE_PATH}/Adarshprojects/electraDeals.png`,
             ]}
           />
           <TypographyH3 className="my-4 mt-8">
@@ -794,9 +794,9 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/Testimonials.png`,
-              `${BASE_PATH}/Sangeetaprojects/followus.png`,
-              `${BASE_PATH}/Sangeetaprojects/ElectraContactUs.png`,
+              `${BASE_PATH}/Adarshprojects/Testimonials.png`,
+              `${BASE_PATH}/Adarshprojects/followus.png`,
+              `${BASE_PATH}/Adarshprojects/ElectraContactUs.png`,
             ]}
           />
           <p className="font-mono mb-2 mt-8 text-center">
@@ -812,12 +812,12 @@ const projects: Project[] = [
     id: "3d-animation",
     category: "3d-animation",
     title: "3D Landing Page",
-    src: "/assets/projects-screenshots/Sangeetaprojects/3DLandingPage.png",
+    src: "/assets/projects-screenshots/Adarshprojects/3DLandingPage.png",
     screenshots: [
-      "/assets/projects-screenshots/Sangeetaprojects/3DLandingPage.png",
+      "/assets/projects-screenshots/Adarshprojects/3DLandingPage.png",
     ],
     live: "https://3-d-animation-two.vercel.app/", 
-    github: "https://github.com/Sangeeta-Prajapati/3D-animation-",
+    github: "https://github.com/Adarsh/3D-animation-",
     skills: {
       frontend: [
         PROJECT_SKILLS.react, // React.js
@@ -854,8 +854,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/3DLandingPage.png`,
-              `${BASE_PATH}/Sangeetaprojects/3D-whoWeAre.png`,
+              `${BASE_PATH}/Adarshprojects/3DLandingPage.png`,
+              `${BASE_PATH}/Adarshprojects/3D-whoWeAre.png`,
             ]}
           />
           <TypographyH3 className="my-4 ">
@@ -869,8 +869,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/3D-skills.png`,
-              `${BASE_PATH}/Sangeetaprojects/3D-contact.png`,
+              `${BASE_PATH}/Adarshprojects/3D-skills.png`,
+              `${BASE_PATH}/Adarshprojects/3D-contact.png`,
             ]}
           />
           <TypographyH3 className="my-4 mt-8">
@@ -885,9 +885,9 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/Sangeetaprojects/3D-whoWeAre.png`,
-              `${BASE_PATH}/Sangeetaprojects/3D-skills.png`,
-              `${BASE_PATH}/Sangeetaprojects/3D-contact.png`,
+              `${BASE_PATH}/Adarshprojects/3D-whoWeAre.png`,
+              `${BASE_PATH}/Adarshprojects/3D-skills.png`,
+              `${BASE_PATH}/Adarshprojects/3D-contact.png`,
             ]}
           />
           <p className="font-mono mb-2 mt-8 text-center">
@@ -909,12 +909,12 @@ const projects: Project[] = [
   id: "storybit-streaming-dashboard",
   category: "streaming-dashboard",
   title: "StoryBit Streaming Dashboard",
-   src: "/assets/projects-screenshots/Sangeetaprojects/streaming-dashboardLandingboard.png",
+   src: "/assets/projects-screenshots/Adarshprojects/streaming-dashboardLandingboard.png",
     screenshots: [
-      "/assets/projects-screenshots/Sangeetaprojects/storybitLandingPage.png",
+      "/assets/projects-screenshots/Adarshprojects/storybitLandingPage.png",
     ],
   live: "https://streaming-movie-five.vercel.app/",
-  github: "https://github.com/Sangeeta-Prajapati/StreamingMovie.git",
+  github: "https://github.com/Adarsh/StreamingMovie.git",
   skills: {
     frontend: [
       PROJECT_SKILLS.next, // Next.js 14 (App Router)
@@ -954,8 +954,8 @@ const projects: Project[] = [
 
         <SlideShow
           images={[
-            `${BASE_PATH}/Sangeetaprojects/storybitLandingPage.png`,
-            `${BASE_PATH}/Sangeetaprojects/trailer.png`,
+            `${BASE_PATH}/Adarshprojects/storybitLandingPage.png`,
+            `${BASE_PATH}/Adarshprojects/trailer.png`,
           ]}
         />
 
@@ -971,8 +971,8 @@ const projects: Project[] = [
 
         <SlideShow
           images={[
-            `${BASE_PATH}/Sangeetaprojects/popular-topRated.png`,
-            `${BASE_PATH}/Sangeetaprojects/visitSite-IMDb.png`,
+            `${BASE_PATH}/Adarshprojects/popular-topRated.png`,
+            `${BASE_PATH}/Adarshprojects/visitSite-IMDb.png`,
           ]}
         />
 
@@ -1001,8 +1001,8 @@ const projects: Project[] = [
 
         <SlideShow
           images={[
-            `${BASE_PATH}/Sangeetaprojects/searchMovie.png`,
-            `${BASE_PATH}/Sangeetaprojects/moviesRows.png`,
+            `${BASE_PATH}/Adarshprojects/searchMovie.png`,
+            `${BASE_PATH}/Adarshprojects/moviesRows.png`,
           ]}
         />
 
