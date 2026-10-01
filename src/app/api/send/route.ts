@@ -7,10 +7,14 @@ const Email = z.object({
   message: z.string().min(10, "Message is too short!"),
 });
 
+import { Resend } from "resend";
+import { EmailTemplate } from "@/components/email-template";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    console.log(body);
     const {
       success: zodSuccess,
       data: zodData,
@@ -20,34 +24,29 @@ export async function POST(req: Request) {
     if (!zodSuccess)
       return Response.json({ error: zodError?.message }, { status: 400 });
 
-    // Web3Forms implementation
-    const formData = new FormData();
-    formData.append('access_key', process.env.WEB3FORMS_ACCESS_KEY || '');
-    formData.append('name', zodData.fullName);
-    formData.append('email', zodData.email);
-    formData.append('message', zodData.message);
-    formData.append('subject', 'New Contact Form Submission');
-    formData.append('from_name', 'Portfolio Contact Form');
-    formData.append('to_email', config.email);
-
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
+    const { data, error } = await resend.emails.send({
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: [config.email],
+      subject: `New Message from ${zodData.fullName}`,
+      reply_to: zodData.email,
+      react: EmailTemplate({
+        fullName: zodData.fullName,
+        email: zodData.email,
+        message: zodData.message,
+      }) as React.ReactElement,
     });
 
-    const data = await response.json();
-
-    if (data.success) {
-      return Response.json({ 
-        success: true, 
-        message: "Email sent successfully" 
-      });
-    } else {
+    if (error) {
       return Response.json({ 
         success: false, 
-        message: data.message 
+        message: error.message 
       }, { status: 500 });
     }
+
+    return Response.json({ 
+      success: true, 
+      message: "Email sent successfully" 
+    });
   } catch (error) {
     return Response.json({ error }, { status: 500 });
   }

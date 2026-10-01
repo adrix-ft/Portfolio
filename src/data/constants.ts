@@ -40,6 +40,10 @@ export enum SkillNames {
   NGINX = "nginx",      //
   VIM = "vim",           //
   VERCEL = "vercel",    //
+  SUPABASE = "supabase",
+  RENDER = "render",
+  BIOINFORMATICS = "bioinformatics",
+  PYTHON = "python",
 }
 export type Skill = {
   id: number;
@@ -248,6 +252,38 @@ using use = useUsing("use")`,
       "The triangle compony, helps you deploy and go touch grass! 🚀🌿",
     color: "#6cc24a",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
+  },
+  [SkillNames.SUPABASE]: {
+    id: 25,
+    name: "supabase",
+    label: "Supabase",
+    shortDescription: "The open source Firebase alternative. Build fast, scale faster. ⚡🐘",
+    color: "#3ecf8e",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+  },
+  [SkillNames.RENDER]: {
+    id: 26,
+    name: "render",
+    label: "Render",
+    shortDescription: "Deploy your apps effortlessly and never think about servers again. ☁️🚀",
+    color: "#000000",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/render/render-original.svg",
+  },
+  [SkillNames.PYTHON]: {
+    id: 27,
+    name: "python",
+    label: "Python",
+    shortDescription: "Data science, Bioinformatics, web apps—Python does it all, beautifully. 🐍🧪",
+    color: "#3776ab",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  },
+  [SkillNames.BIOINFORMATICS]: {
+    id: 28,
+    name: "bioinformatics",
+    label: "Bioinformatics",
+    shortDescription: "Decoding biology with the power of computation and data. 🧬💻",
+    color: "#008000",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
   },
 };
 

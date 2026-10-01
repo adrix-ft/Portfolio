@@ -25,16 +25,16 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   setLoading(true);
   
   try {
-    const formData = new FormData();
-    formData.append('access_key', 'ca40b149-449c-4f13-bdb1-281a7431f38f'); // Replace with your actual key
-    formData.append('name', fullName);
-    formData.append('email', email);
-    formData.append('message', message);
-    formData.append('subject', 'New Contact Form Submission');
-    
-    const response = await fetch('https://api.web3forms.com/submit', {
+    const response = await fetch('/api/send', {
       method: 'POST',
-      body: formData
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        fullName,
+        email,
+        message,
+      }),
     });
     
     const data = await response.json();
