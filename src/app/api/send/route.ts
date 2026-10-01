@@ -28,7 +28,7 @@ export async function POST(req: Request) {
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: [config.email],
       subject: `New Message from ${zodData.fullName}`,
-      reply_to: zodData.email,
+      replyTo: zodData.email,
       react: EmailTemplate({
         fullName: zodData.fullName,
         email: zodData.email,
