@@ -354,7 +354,7 @@ const projects: Project[] = [
       "/assets/projects-screenshots/Adarshprojects/trust-vault.png",
     ],
     live: "https://trust-vault.in",
-    github: "https://github.com/adrix-ft/trust-vault", // Ensure this points to the exact repo
+    github: "https://github.com/adrix-ft/Trust-Vault", // Ensure this points to the exact repo
     skills: {
       frontend: [
         PROJECT_SKILLS.react,
