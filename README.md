@@ -4,7 +4,7 @@
   <h3>A modern, interactive portfolio website showcasing my journey as a Full Stack Developer. Built with cutting-edge technologies and featuring stunning 3D animations, smooth transitions, and an engaging user experience.</h3>
 
   <p align="center">
-    <a href="https://adarsh-portfolio.vercel.app"><b>✨ View Live Demo ✨</b></a>
+    <a href="https://portfolio-of-adarsh.vercel.app"><b>✨ View Live Demo ✨</b></a>
   </p>
 
   <p align="center">

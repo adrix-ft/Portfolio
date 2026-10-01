@@ -14,7 +14,7 @@ import EasterEggs from "@/components/easter-eggs";
 import { config } from "@/data/config";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.adarsh.com"),
+  metadataBase: new URL(config.site),
   title: config.title,
   description: config.description.long,
   keywords: config.keywords,

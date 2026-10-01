@@ -20,7 +20,7 @@ const config = {
   ],
   author: "Adarsh",
   email: "adrashyadav07o8@gmail.com",
-  site: "//www.Adarsh.com",
+  site: "https://portfolio-of-adarsh.vercel.app",
 
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";
