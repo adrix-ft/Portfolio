@@ -359,12 +359,11 @@ const projects: Project[] = [
       frontend: [
         PROJECT_SKILLS.react,
         PROJECT_SKILLS.tailwind,
-        PROJECT_SKILLS.js,
       ],
       backend: [
         PROJECT_SKILLS.node,
         PROJECT_SKILLS.express,
-        PROJECT_SKILLS.mongo,
+        PROJECT_SKILLS.supabase,
       ],
     },
     get content() {
