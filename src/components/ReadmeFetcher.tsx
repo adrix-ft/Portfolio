@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+import rehypeRaw from 'rehype-raw';
+
 export default function ReadmeFetcher({ repo }: { repo: string }) {
   const [content, setContent] = useState<string>('Loading README...');
 
@@ -43,8 +45,8 @@ export default function ReadmeFetcher({ repo }: { repo: string }) {
   }, [repo]);
 
   return (
-    <div className="prose prose-invert max-w-none font-sans text-sm mt-4 p-4 bg-black/20 rounded-lg border border-white/10 overflow-hidden">
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+    <div className="prose prose-invert max-w-none font-sans text-sm mt-4 p-4 bg-black/20 rounded-lg border border-white/10 overflow-hidden [&_img]:max-w-full [&_img]:rounded-md">
+      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {content}
       </ReactMarkdown>
     </div>
