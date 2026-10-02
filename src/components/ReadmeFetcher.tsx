@@ -24,9 +24,12 @@ export default function ReadmeFetcher({ repo }: { repo: string }) {
     // Some repos use 'main', others use 'master'
     const fetchReadme = async () => {
       try {
+        let branch = 'main';
         let res = await fetch(`https://raw.githubusercontent.com/${repoPath}/main/README.md`);
+        
         if (!res.ok) {
           res = await fetch(`https://raw.githubusercontent.com/${repoPath}/master/README.md`);
+          branch = 'master';
         }
         
         if (!res.ok) {
@@ -34,7 +37,22 @@ export default function ReadmeFetcher({ repo }: { repo: string }) {
           return;
         }
 
-        const text = await res.text();
+        let text = await res.text();
+        
+        // Fix relative image paths in HTML <img src="...">
+        text = text.replace(/src="([^"]+)"/g, (match, p1) => {
+          if (p1.startsWith('http') || p1.startsWith('data:')) return match;
+          const cleanPath = p1.startsWith('./') ? p1.slice(2) : p1.startsWith('/') ? p1.slice(1) : p1;
+          return `src="https://raw.githubusercontent.com/${repoPath}/${branch}/${cleanPath}"`;
+        });
+        
+        // Fix relative image paths in Markdown ![alt](...)
+        text = text.replace(/\]\(([^)]+)\)/g, (match, p1) => {
+          if (p1.startsWith('http') || p1.startsWith('data:')) return match;
+          const cleanPath = p1.startsWith('./') ? p1.slice(2) : p1.startsWith('/') ? p1.slice(1) : p1;
+          return `](https://raw.githubusercontent.com/${repoPath}/${branch}/${cleanPath})`;
+        });
+
         setContent(text);
       } catch (error) {
         setContent('Failed to load README.');
