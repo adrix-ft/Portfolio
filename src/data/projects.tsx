@@ -383,7 +383,7 @@ const projects: Project[] = [
     screenshots: [
       "/assets/projects-screenshots/Adarshprojects/onlystore.png",
     ],
-    live: "",
+    live: "https://onlystore.vercel.app/",
     github: "https://github.com/adrix-ft/One-Store",
     skills: {
       frontend: [
