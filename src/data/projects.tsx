@@ -374,6 +374,38 @@ const projects: Project[] = [
         </div>
       );
     },
+  },
+  {
+    id: "one-store",
+    category: "SaaS",
+    title: "Only Store",
+    src: "/assets/projects-screenshots/Adarshprojects/onlystore.png",
+    screenshots: [
+      "/assets/projects-screenshots/Adarshprojects/onlystore.png",
+    ],
+    live: "",
+    github: "https://github.com/adrix-ft/One-Store",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.vite,
+        PROJECT_SKILLS.ts,
+      ],
+      backend: [
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.express,
+        PROJECT_SKILLS.supabase,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <ProjectsLinks live={this.live} repo={this.github} />
+          {this.github && <ReadmeFetcher repo={this.github} />}
+        </div>
+      );
+    },
   }
 ];
 export default projects;
