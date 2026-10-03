@@ -406,6 +406,33 @@ const projects: Project[] = [
         </div>
       );
     },
+  },
+  {
+    id: "video-editor-portfolio",
+    category: "Portfolio",
+    title: "Video Editor Portfolio",
+    src: "/assets/projects-screenshots/Adarshprojects/portfolio-preview.png",
+    screenshots: [
+      "/assets/projects-screenshots/Adarshprojects/portfolio-preview.png",
+    ],
+    live: "https://video-editor-portfolio1-three.vercel.app/",
+    github: "https://github.com/adu-ft/Video-editor-portfolio1",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.framerMotion,
+      ],
+      backend: [],
+    },
+    get content() {
+      return (
+        <div>
+          <ProjectsLinks live={this.live} repo={this.github} />
+          {this.github && <ReadmeFetcher repo={this.github} />}
+        </div>
+      );
+    },
   }
 ];
 export default projects;
