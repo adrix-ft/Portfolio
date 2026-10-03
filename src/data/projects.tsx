@@ -421,7 +421,8 @@ const projects: Project[] = [
       frontend: [
         PROJECT_SKILLS.react,
         PROJECT_SKILLS.tailwind,
-        PROJECT_SKILLS.framerMotion,
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.vite,
       ],
       backend: [],
     },
