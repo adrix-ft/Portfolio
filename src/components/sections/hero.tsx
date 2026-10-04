@@ -50,7 +50,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Large background text */}
-          <div className="absolute z-0 w-full flex items-center justify-center top-[15%] md:top-[22%] -translate-y-1/2 select-none overflow-hidden h-[300px] md:h-[300px]" aria-hidden="true">
+          <div className="absolute z-0 w-full flex items-center justify-center top-[22%] md:top-[22%] -translate-y-1/2 select-none overflow-hidden h-[300px] md:h-[300px]" aria-hidden="true">
             <motion.div 
               initial="hidden"
               animate="visible"
