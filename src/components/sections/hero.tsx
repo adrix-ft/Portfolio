@@ -58,7 +58,7 @@ const HeroSection = () => {
                 hidden: { opacity: 0 },
                 visible: {
                   opacity: 1,
-                  transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+                  transition: { staggerChildren: 0.1, delayChildren: 1.5 }
                 }
               }}
               className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-8 px-4 mt-12 md:mt-0"
