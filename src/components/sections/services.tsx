@@ -66,61 +66,81 @@ const ServicesSection = () => {
                 )}
                 onClick={() => !isActive && setActiveIndex(index)}
               >
-                <div className="flex items-center justify-between p-6 md:p-10 relative">
+                <div className="flex items-start md:items-center justify-between p-6 md:p-10 relative">
                   {/* Left Side: Title & Description */}
                   <div className="flex flex-col z-10 w-full max-w-lg">
                     <h3 className={cn(
                       "text-3xl md:text-5xl font-medium tracking-tight transition-all duration-300",
-                      isActive ? "mb-4" : ""
+                      isActive ? "md:mb-4" : "",
+                      "mb-4 md:mb-0" // Always add margin bottom on mobile since description is always there
                     )}>
                       {service.title}
                     </h3>
                     
+                    {/* Desktop Accordion Description */}
                     <AnimatePresence>
                       {isActive && (
                         <motion.p 
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
-                          className="text-zinc-400 text-sm md:text-base leading-relaxed"
+                          className="hidden md:block text-zinc-400 text-sm md:text-base leading-relaxed"
                         >
                           {service.description}
                         </motion.p>
                       )}
                     </AnimatePresence>
 
-                    {/* Floating Image Component (Inline on mobile, absolute on desktop) */}
+                    {/* Mobile Always-Visible Description */}
+                    <p className="md:hidden text-zinc-400 text-sm leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+
+                    {/* Desktop Floating Image Component */}
                     <AnimatePresence>
                       {isActive && (
                         <motion.div 
                           initial={{ opacity: 0, y: 30 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.9 }}
-                          className="mt-8 md:mt-0 block md:absolute md:right-[25%] md:top-[-30%] z-20 pointer-events-auto cursor-pointer drop-shadow-2xl md:-rotate-[10deg] transition-all"
+                          className="hidden md:block absolute right-[25%] top-[-30%] z-20 pointer-events-auto cursor-pointer drop-shadow-2xl -rotate-[10deg] transition-all"
                           onClick={(e) => {
                             e.stopPropagation();
                             window.dispatchEvent(new CustomEvent('setCategory', { detail: service.category }));
                           }}
                         >
-                          <div className="w-64 h-40 md:w-72 md:h-48 bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden border-[6px] border-white shadow-xl relative hover:scale-105 transition-transform duration-300">
+                          <div className="w-72 h-48 bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden border-[6px] border-white shadow-xl relative hover:scale-105 transition-transform duration-300">
                             <Image src={service.image} alt={service.title} fill className="w-full h-full object-cover" />
                           </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
+
+                    {/* Mobile Always-Visible Image */}
+                    <div 
+                      className="md:hidden block z-20 pointer-events-auto cursor-pointer drop-shadow-2xl w-full"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.dispatchEvent(new CustomEvent('setCategory', { detail: service.category }));
+                      }}
+                    >
+                      <div className="w-full h-48 bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden border-[4px] border-white shadow-xl relative hover:scale-105 transition-transform duration-300">
+                        <Image src={service.image} alt={service.title} fill className="w-full h-full object-cover" />
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Icon */}
-                  <div className="z-10 ml-4 flex-shrink-0 cursor-pointer" onClick={(e) => {
+                  {/* Icon (Desktop Only) */}
+                  <div className="hidden md:flex z-10 ml-4 flex-shrink-0 cursor-pointer" onClick={(e) => {
                     if (isActive) {
                       e.stopPropagation();
                       setActiveIndex(null);
                     }
                   }}>
                     {isActive ? (
-                      <X className="w-6 h-6 md:w-8 md:h-8 text-white" strokeWidth={1} />
+                      <X className="w-8 h-8 text-white" strokeWidth={1} />
                     ) : (
-                      <MoveUpRight className="w-6 h-6 md:w-8 md:h-8 text-black dark:text-white" strokeWidth={1} />
+                      <MoveUpRight className="w-8 h-8 text-black dark:text-white" strokeWidth={1} />
                     )}
                   </div>
                 </div>
