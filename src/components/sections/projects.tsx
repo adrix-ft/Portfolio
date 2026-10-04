@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   ModalBody,
@@ -10,29 +10,117 @@ import {
 } from "../ui/animated-modal";
 import { FloatingDock } from "../ui/floating-dock";
 import Link from "next/link";
-
 import SmoothScroll from "../smooth-scroll";
 import projects, { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { Button } from "../ui/button";
 
 const ProjectsSection = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [showAll, setShowAll] = useState(false);
+  
+  useEffect(() => {
+    const handleSetCategory = (e: any) => {
+      if (e.detail) {
+        setActiveCategory(e.detail);
+        document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    window.addEventListener("setCategory", handleSetCategory);
+    return () => window.removeEventListener("setCategory", handleSetCategory);
+  }, []);
+
+  const categories = ["All", "E-commerce", "Portfolio", "SaaS", "Freelance", "UI/UX Design & SEO"];
+
+  const filteredProjects = activeCategory === "All" 
+    ? projects 
+    : projects.filter(p => p.category === activeCategory);
+
   return (
-    <section id="projects" className="max-w-7xl mx-auto md:h-[130vh]">
-      <Link href={"#projects"}>
-        <h2
-          className={cn(
-            "bg-clip-text text-4xl text-center text-transparent md:text-7xl pt-16",
-            "bg-gradient-to-b from-black/80 to-black/50",
-            "dark:bg-gradient-to-b dark:from-white/80 dark:to-white/20 dark:bg-opacity-50 mb-32"
-          )}
+    <section id="projects" className="w-full relative z-10 bg-[#F6F6F4] dark:bg-black py-24 text-black dark:text-white border-t border-zinc-200 dark:border-zinc-800">
+      {/* Subtle Grid Texture */}
+      <motion.div 
+        initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
+        whileInView={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
+        viewport={{ once: false, margin: "0px" }}
+        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: "linear-gradient(to right, rgba(128, 128, 128, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(128, 128, 128, 0.3) 1px, transparent 1px)",
+          backgroundSize: "40px 40px"
+        }}
+      />
+      
+      <div className="container relative z-10 mx-auto px-4 md:px-8 lg:px-24 max-w-7xl">
+        <motion.h2 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          className="text-3xl md:text-4xl font-medium mb-12 tracking-tight uppercase"
         >
-          Projects
-        </h2>
-      </Link>
-      <div className="grid grid-cols-1 md:grid-cols-3">
-        {projects.map((project, index) => (
-          <Modall key={project.src} project={project} />
-        ))}
+          /PROJECTS
+        </motion.h2>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          className="flex flex-wrap items-center justify-start gap-3 mb-12"
+        >
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={cn(
+                "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 border",
+                activeCategory === category 
+                  ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white" 
+                  : "bg-transparent text-zinc-600 border-zinc-300 hover:border-black dark:text-zinc-400 dark:border-zinc-700 dark:hover:border-white"
+              )}
+            >
+              {category}
+            </button>
+          ))}
+        </motion.div>
+      
+          <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+        {filteredProjects.length > 0 ? (
+          filteredProjects.map((project, index) => (
+            <div key={project.src} className={cn(!showAll && index >= 3 ? "hidden md:block" : "block")}>
+              <Modall project={project} />
+            </div>
+          ))
+        ) : (
+          <div className="col-span-full py-12 text-center text-zinc-500">
+            More projects coming soon to this category!
+          </div>
+        )}
+        </motion.div>
+
+        {!showAll && filteredProjects.length > 3 && (
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            className="flex justify-center mt-10 md:hidden w-full"
+          >
+            <Button 
+              onClick={() => setShowAll(true)} 
+              variant="outline" 
+              className="rounded-full px-8 py-6 text-sm border-zinc-300 dark:border-zinc-700 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+            >
+              Show More Projects
+            </Button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
@@ -55,7 +143,7 @@ const Modall = ({ project }: { project: Project }) => {
             />
             <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-black via-black/85 to-transparent pointer-events-none">
               <div className="flex flex-col h-full items-start justify-end p-6">
-                <div className="text-lg text-left">{project.title}</div>
+                <div className="text-lg text-left text-white font-medium">{project.title}</div>
                 <div className="text-xs bg-white text-black rounded-lg w-fit px-2">
                   {project.category}
                 </div>

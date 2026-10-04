@@ -7,9 +7,9 @@ const links: Link[] = [
     thumbnail: '/assets/nav-link-previews/landing.png'
   },
   {
-    title: 'About',
-    href: '/#about',
-    thumbnail: '/assets/nav-link-previews/about.png'
+    title: 'Services',
+    href: '/#services',
+    thumbnail: '/assets/nav-link-previews/services.png' // Mock thumbnail since it's disabled anyway
   },
   {
     title: 'Skills',

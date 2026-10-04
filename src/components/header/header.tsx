@@ -54,6 +54,14 @@ const Header = ({ loader }: HeaderProps) => {
         </Link>
 
         <OnlineUsers />
+        <Link href="https://docs.google.com/document/d/1KKt95Nb4_d_sik6flxJL03f-sZgrDkRJ4Txq6vtgHQg/edit?tab=t.0#heading=h.vhytaeubzzj5" target="_blank" className="flex">
+          <Button 
+            variant="outline" 
+            className="mr-2 md:mr-4 rounded-full px-4 md:px-6 text-xs md:text-sm border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors h-8 md:h-10"
+          >
+            Resume
+          </Button>
+        </Link>
         <FunnyThemeToggle className="w-6 h-6 mr-4" />
         <Button
           variant={"ghost"}

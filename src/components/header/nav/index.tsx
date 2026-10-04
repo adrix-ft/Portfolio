@@ -32,7 +32,7 @@ const Index: React.FC<IndexProps> = ({ setIsActive }) => {
       exit="exit"
       className={styles.nav}
     >
-      <div className={cn(styles.wrapper, 'flex justify-end sm:justify-start')}>
+      <div className={cn(styles.wrapper, 'flex justify-center sm:justify-start')}>
         <div className={styles.container}>
           <Body
             links={links}
@@ -42,11 +42,6 @@ const Index: React.FC<IndexProps> = ({ setIsActive }) => {
           />
           {/* <Footer /> */}
         </div>
-        <Image
-          src={links[selectedLink.index].thumbnail}
-          isActive={selectedLink.isActive}
-        />
-        {/* <p>{links[selectedLink.index].thumbnail}</p> */}
       </div>
     </motion.div>
   );

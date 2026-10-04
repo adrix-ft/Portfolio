@@ -127,15 +127,15 @@ function ElasticCursor() {
       const el = e.target as HTMLElement;
       const hoverElemRect = getRekt(el);
       if (hoverElemRect) {
-        const rect = el.getBoundingClientRect();
+        const rect = hoverElemRect;
         setIsHovering(true);
         gsap.to(jellyRef.current, {
           rotate: 0,
           duration: 0,
         });
         gsap.to(jellyRef.current, {
-          width: el.offsetWidth + 20,
-          height: el.offsetHeight + 20,
+          width: rect.width + 20,
+          height: rect.height + 20,
           x: rect.left + rect.width / 2,
           y: rect.top + rect.height / 2,
           borderRadius: 10,
@@ -200,12 +200,12 @@ function ElasticCursor() {
           "translate-x-[-50%] translate-y-[-50%]"
         )}
         style={{
-          zIndex: 100,
+          zIndex: 99999,
           backdropFilter: "invert(100%)",
         }}
       ></div>
       <div
-        className="w-3 h-3 rounded-full fixed translate-x-[-50%] translate-y-[-50%] pointer-events-none transition-none duration-300"
+        className="w-3 h-3 rounded-full fixed translate-x-[-50%] translate-y-[-50%] pointer-events-none transition-none duration-300 z-[99999]"
         style={{
           top: y,
           left: x,
