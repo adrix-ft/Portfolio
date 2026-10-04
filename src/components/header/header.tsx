@@ -82,11 +82,6 @@ const Header = ({ loader }: HeaderProps) => {
               Close
             </motion.p>
           </div>
-          <div
-            className={`${styles.burger} ${
-              isActive ? styles.burgerActive : ""
-            }`}
-          ></div>
         </Button>
       </div>
       <motion.div
