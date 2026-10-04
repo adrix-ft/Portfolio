@@ -99,7 +99,7 @@ const HeroSection = () => {
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="absolute bottom-0 z-10 w-full flex justify-center pointer-events-none"
+            className="absolute bottom-[10vh] md:bottom-0 z-10 w-full flex justify-center pointer-events-none"
           >
             <div 
               ref={imageContainerRef}
