@@ -58,7 +58,7 @@ const HeroSection = () => {
                 hidden: { opacity: 0 },
                 visible: {
                   opacity: 1,
-                  transition: { staggerChildren: 0.1, delayChildren: 1.5 }
+                  transition: { staggerChildren: 0.1, delayChildren: 0.2 }
                 }
               }}
               className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-8 px-4 mt-12 md:mt-0"
@@ -98,7 +98,7 @@ const HeroSection = () => {
           <motion.div 
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             className="absolute bottom-0 z-10 w-full flex justify-center pointer-events-none"
           >
             <div 
@@ -139,7 +139,7 @@ const HeroSection = () => {
           <motion.div 
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
             className="hidden md:block absolute left-4 md:left-12 lg:left-24 bottom-6 md:bottom-[25%] z-20 max-w-[220px] md:max-w-[300px] 
               bg-white/70 dark:bg-black/70 backdrop-blur-xl md:bg-transparent md:dark:bg-transparent md:backdrop-blur-none 
               p-5 md:p-0 rounded-3xl md:rounded-none border border-black/5 dark:border-white/10 md:border-none shadow-xl md:shadow-none"
@@ -161,7 +161,7 @@ const HeroSection = () => {
           <motion.div 
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
             className="absolute right-4 md:right-12 lg:right-24 bottom-8 md:bottom-[25%] z-20 flex flex-col gap-3 md:gap-4 items-end"
           >
             <Link href="https://github.com/adrix-ft" target="_blank" className="cursor-can-hover rounded-full shadow-lg md:shadow-none">
