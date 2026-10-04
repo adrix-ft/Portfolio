@@ -38,13 +38,23 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="w-full relative z-10 bg-[#F6F6F4] dark:bg-black py-24 text-black dark:text-white border-t border-zinc-200 dark:border-zinc-800">
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .no-mobile-scroll-anim {
+              opacity: 1 !important;
+              transform: none !important;
+            }
+          }
+        `}
+      </style>
       <div className="container mx-auto px-4 md:px-8 lg:px-24 max-w-5xl">
         <motion.h2 
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-medium mb-12 tracking-tight"
+          className="text-3xl md:text-4xl font-medium mb-12 tracking-tight no-mobile-scroll-anim"
         >
           /SERVICE
         </motion.h2>
@@ -61,86 +71,66 @@ const ServicesSection = () => {
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 key={index} 
                 className={cn(
-                  "border-b border-zinc-200 dark:border-zinc-800 transition-colors duration-500 relative",
+                  "border-b border-zinc-200 dark:border-zinc-800 transition-colors duration-500 relative no-mobile-scroll-anim",
                   isActive ? "bg-[#18181b] text-white rounded-lg my-3 overflow-visible shadow-2xl" : "hover:bg-zinc-50 dark:hover:bg-zinc-900 cursor-pointer"
                 )}
                 onClick={() => !isActive && setActiveIndex(index)}
               >
-                <div className="flex items-start md:items-center justify-between p-6 md:p-10 relative">
+                <div className="flex items-center justify-between p-6 md:p-10 relative">
                   {/* Left Side: Title & Description */}
                   <div className="flex flex-col z-10 w-full max-w-lg">
                     <h3 className={cn(
                       "text-3xl md:text-5xl font-medium tracking-tight transition-all duration-300",
-                      isActive ? "md:mb-4" : "",
-                      "mb-4 md:mb-0" // Always add margin bottom on mobile since description is always there
+                      isActive ? "mb-4" : ""
                     )}>
                       {service.title}
                     </h3>
                     
-                    {/* Desktop Accordion Description */}
                     <AnimatePresence>
                       {isActive && (
                         <motion.p 
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
-                          className="hidden md:block text-zinc-400 text-sm md:text-base leading-relaxed"
+                          className="text-zinc-400 text-sm md:text-base leading-relaxed"
                         >
                           {service.description}
                         </motion.p>
                       )}
                     </AnimatePresence>
 
-                    {/* Mobile Always-Visible Description */}
-                    <p className="md:hidden text-zinc-400 text-sm leading-relaxed mb-6">
-                      {service.description}
-                    </p>
-
-                    {/* Desktop Floating Image Component */}
+                    {/* Floating Image Component (Inline on mobile, absolute on desktop) */}
                     <AnimatePresence>
                       {isActive && (
                         <motion.div 
                           initial={{ opacity: 0, y: 30 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.9 }}
-                          className="hidden md:block absolute right-[25%] top-[-30%] z-20 pointer-events-auto cursor-pointer drop-shadow-2xl -rotate-[10deg] transition-all"
+                          className="mt-8 md:mt-0 block md:absolute md:right-[25%] md:top-[-30%] z-20 pointer-events-auto cursor-pointer drop-shadow-2xl md:-rotate-[10deg] transition-all"
                           onClick={(e) => {
                             e.stopPropagation();
                             window.dispatchEvent(new CustomEvent('setCategory', { detail: service.category }));
                           }}
                         >
-                          <div className="w-72 h-48 bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden border-[6px] border-white shadow-xl relative hover:scale-105 transition-transform duration-300">
+                          <div className="w-64 h-40 md:w-72 md:h-48 bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden border-[6px] border-white shadow-xl relative hover:scale-105 transition-transform duration-300">
                             <Image src={service.image} alt={service.title} fill className="w-full h-full object-cover" />
                           </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
-
-                    {/* Mobile Always-Visible Image */}
-                    <div 
-                      className="md:hidden block z-20 pointer-events-auto cursor-pointer drop-shadow-2xl w-full"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.dispatchEvent(new CustomEvent('setCategory', { detail: service.category }));
-                      }}
-                    >
-                      <div className="w-full h-48 bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden border-[4px] border-white shadow-xl relative hover:scale-105 transition-transform duration-300">
-                        <Image src={service.image} alt={service.title} fill className="w-full h-full object-cover" />
-                      </div>
-                    </div>
                   </div>
 
-                  {/* Icon (Desktop Only) */}
-                  <div className="hidden md:flex z-10 ml-4 flex-shrink-0 cursor-pointer" onClick={(e) => {
+                  {/* Icon */}
+                  <div className="z-10 ml-4 flex-shrink-0 cursor-pointer" onClick={(e) => {
                     if (isActive) {
                       e.stopPropagation();
                       setActiveIndex(null);
                     }
                   }}>
                     {isActive ? (
-                      <X className="w-8 h-8 text-white" strokeWidth={1} />
+                      <X className="w-6 h-6 md:w-8 md:h-8 text-white" strokeWidth={1} />
                     ) : (
-                      <MoveUpRight className="w-8 h-8 text-black dark:text-white" strokeWidth={1} />
+                      <MoveUpRight className="w-6 h-6 md:w-8 md:h-8 text-black dark:text-white" strokeWidth={1} />
                     )}
                   </div>
                 </div>
