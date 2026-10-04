@@ -46,43 +46,51 @@ const Header = ({ loader }: HeaderProps) => {
         }}
       >
       </div> */}
-      <div className={cn(styles.bar, "flex items-center justify-end")}>
-        <Link href="/" className="flex items-center justify-center">
-          <Button variant={"link"} className="text-md">
-            {config.author}
-          </Button>
-        </Link>
-
-        <OnlineUsers />
-        <Link href="https://docs.google.com/document/d/1KKt95Nb4_d_sik6flxJL03f-sZgrDkRJ4Txq6vtgHQg/edit?tab=t.0#heading=h.vhytaeubzzj5" target="_blank" className="flex">
-          <Button 
-            variant="outline" 
-            className="mr-2 md:mr-4 rounded-full px-4 md:px-6 text-xs md:text-sm border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors h-8 md:h-10"
-          >
-            Resume
-          </Button>
-        </Link>
-        <FunnyThemeToggle className="w-6 h-6 mr-4" />
-        <Button
-          variant={"ghost"}
-          onClick={() => setIsActive(!isActive)}
-          className={cn(
-            styles.el,
-            "m-0 p-0 h-6 bg-transparent flex items-center justify-center"
-          )}
-        >
-          <div className="relative flex items-center">
-            <motion.p
-              variants={opacity}
-              animate={!isActive ? "open" : "closed"}
+      <div className="flex items-center justify-between w-full relative z-50">
+        <div className="flex items-center gap-2 md:gap-4">
+          <Link href="/" className="hidden md:flex items-center justify-center">
+            <Button variant="link" className="text-md p-0 h-auto">
+              {config.author}
+            </Button>
+          </Link>
+          <Link href="https://docs.google.com/document/d/1KKt95Nb4_d_sik6flxJL03f-sZgrDkRJ4Txq6vtgHQg/edit?tab=t.0#heading=h.vhytaeubzzj5" target="_blank" className="flex">
+            <Button 
+              variant="outline" 
+              className="rounded-full px-4 text-xs h-8 border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
             >
-              Menu
-            </motion.p>
-            <motion.p variants={opacity} animate={isActive ? "open" : "closed"}>
-              Close
-            </motion.p>
+              Resume
+            </Button>
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-2 md:gap-4">
+          <div className="hidden sm:block">
+            <OnlineUsers />
           </div>
-        </Button>
+          <FunnyThemeToggle className="w-6 h-6" />
+          <Button
+            variant="ghost"
+            onClick={() => setIsActive(!isActive)}
+            className="m-0 p-0 h-6 bg-transparent hover:bg-transparent flex items-center justify-center relative"
+          >
+            <div className="relative flex items-center justify-center w-10">
+              <motion.p
+                variants={opacity}
+                animate={!isActive ? "open" : "closed"}
+                className="m-0 text-sm font-medium"
+              >
+                Menu
+              </motion.p>
+              <motion.p 
+                variants={opacity} 
+                animate={isActive ? "open" : "closed"}
+                className="absolute m-0 text-sm font-medium"
+              >
+                Close
+              </motion.p>
+            </div>
+          </Button>
+        </div>
       </div>
       <motion.div
         variants={background}
