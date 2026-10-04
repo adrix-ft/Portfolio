@@ -26,7 +26,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className={cn("relative w-full h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black text-black dark:text-white")}>
+    <section id="hero" className={cn("relative w-full h-[70vh] md:h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black text-black dark:text-white")}>
       {!isLoading && (
         <div className="w-full h-full relative">
           
@@ -99,7 +99,7 @@ const HeroSection = () => {
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="absolute bottom-[10vh] md:bottom-0 z-10 w-full flex justify-center pointer-events-none"
+            className="absolute bottom-0 z-10 w-full flex justify-center pointer-events-none"
           >
             <div 
               ref={imageContainerRef}
@@ -158,12 +158,11 @@ const HeroSection = () => {
             </Link>
           </motion.div>
 
-          {/* Right Content - Social Pills */}
           <motion.div 
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-            className="absolute right-4 md:right-12 lg:right-24 bottom-[22vh] md:bottom-[25%] z-20 flex flex-col gap-3 md:gap-4 items-end"
+            className="absolute right-4 md:right-12 lg:right-24 bottom-8 md:bottom-[25%] z-20 flex flex-col gap-3 md:gap-4 items-end"
           >
             <Link href="https://github.com/adrix-ft" target="_blank" className="cursor-can-hover rounded-full shadow-lg md:shadow-none">
               <div className="flex items-center gap-3 p-3 md:px-6 md:py-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-black/70 backdrop-blur-md hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">
