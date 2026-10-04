@@ -23,7 +23,7 @@ const config = {
   site: "https://portfolio-of-adarsh.vercel.app",
 
   get ogImg() {
-    return this.site + "/assets/seo/og-image-v3.png";
+    return this.site + "/assets/seo/og-image-v4.jpg";
   },
   social: {
     twitter: "",
