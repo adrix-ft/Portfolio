@@ -93,10 +93,10 @@ const ServicesSection = () => {
                     <AnimatePresence>
                       {isActive && (
                         <motion.div 
-                          initial={{ opacity: 0, rotate: -2, y: 30 }}
-                          animate={{ opacity: 1, rotate: -10, y: 0 }}
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.9 }}
-                          className="mt-8 md:mt-0 block md:absolute md:right-[25%] md:top-[-30%] z-20 pointer-events-auto cursor-pointer drop-shadow-2xl"
+                          className="mt-8 md:mt-0 block md:absolute md:right-[25%] md:top-[-30%] z-20 pointer-events-auto cursor-pointer drop-shadow-2xl md:-rotate-[10deg] transition-all"
                           onClick={(e) => {
                             e.stopPropagation();
                             window.dispatchEvent(new CustomEvent('setCategory', { detail: service.category }));
