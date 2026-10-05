@@ -40,11 +40,7 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="w-full relative z-10 bg-[#F6F6F4] dark:bg-black py-24 text-black dark:text-white border-t border-zinc-200 dark:border-zinc-800">
       {/* Subtle Grid Texture */}
-      <motion.div 
-        initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
-        whileInView={{ clipPath: "inset(0 0 0% 0)", opacity: 1 }}
-        viewport={{ once: false, margin: "0px" }}
-        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+      <div 
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: "linear-gradient(to right, rgba(128, 128, 128, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(128, 128, 128, 0.3) 1px, transparent 1px)",
@@ -53,21 +49,13 @@ const ProjectsSection = () => {
       />
       
       <div className="container relative z-10 mx-auto px-4 md:px-8 lg:px-24 max-w-7xl">
-        <motion.h2 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        <h2 
           className="text-3xl md:text-4xl font-medium mb-12 tracking-tight uppercase"
         >
           /PROJECTS
-        </motion.h2>
+        </h2>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        <div 
           className="flex flex-wrap items-center justify-start gap-3 mb-12"
         >
           {categories.map((category) => (
@@ -84,13 +72,9 @@ const ProjectsSection = () => {
               {category}
             </button>
           ))}
-        </motion.div>
+        </div>
       
-          <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+          <div 
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
         {filteredProjects.length > 0 ? (
@@ -104,12 +88,10 @@ const ProjectsSection = () => {
             More projects coming soon to this category!
           </div>
         )}
-        </motion.div>
+        </div>
 
         {!showAll && filteredProjects.length > 3 && (
-          <motion.div 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
+          <div 
             className="flex justify-center mt-10 md:hidden w-full"
           >
             <Button 
@@ -119,7 +101,7 @@ const ProjectsSection = () => {
             >
               Show More Projects
             </Button>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

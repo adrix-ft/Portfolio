@@ -25,7 +25,7 @@ const ContactSection = () => {
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col gap-6 pt-4 md:pr-12"
           >
@@ -56,7 +56,7 @@ const ContactSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            <Card className="w-full bg-white dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 backdrop-blur-sm rounded-xl text-black dark:text-white">
+            <Card className="w-full bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 rounded-xl text-black dark:text-white">
               <CardHeader>
                 <CardTitle className="text-3xl font-bold">Send a message</CardTitle>
                 <CardDescription className="text-zinc-600 dark:text-zinc-400 text-base">

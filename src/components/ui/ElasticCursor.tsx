@@ -86,6 +86,7 @@ function ElasticCursor() {
 
   // Set GSAP quick setter Values on useLayoutEffect Update
   useLayoutEffect(() => {
+    gsap.set(jellyRef.current, { xPercent: -50, yPercent: -50 });
     set.x = gsap.quickSetter(jellyRef.current, "x", "px");
     set.y = gsap.quickSetter(jellyRef.current, "y", "px");
     set.r = gsap.quickSetter(jellyRef.current, "rotate", "deg");
@@ -139,8 +140,8 @@ function ElasticCursor() {
           x: rect.left + rect.width / 2,
           y: rect.top + rect.height / 2,
           borderRadius: 10,
-          duration: 1.5,
-          ease: "elastic.out(1, 0.3)",
+          duration: 0.3,
+          ease: "back.out(1.5)",
         });
 
         // return;
@@ -195,21 +196,21 @@ function ElasticCursor() {
         ref={jellyRef}
         id={"jelly-id"}
         className={cn(
-          `w-[${CURSOR_DIAMETER}px] h-[${CURSOR_DIAMETER}px] border-2 border-black dark:border-white`,
+          `w-[${CURSOR_DIAMETER}px] h-[${CURSOR_DIAMETER}px] bg-white`,
           "jelly-blob fixed left-0 top-0 rounded-lg z-[999] pointer-events-none will-change-transform",
           "translate-x-[-50%] translate-y-[-50%]"
         )}
         style={{
           zIndex: 99999,
-          backdropFilter: "invert(100%)",
+          mixBlendMode: "difference",
         }}
       ></div>
       <div
-        className="w-3 h-3 rounded-full fixed translate-x-[-50%] translate-y-[-50%] pointer-events-none transition-none duration-300 z-[99999]"
+        className="w-3 h-3 rounded-full fixed translate-x-[-50%] translate-y-[-50%] pointer-events-none transition-none duration-300 z-[99999] bg-white"
         style={{
           top: y,
           left: x,
-          backdropFilter: "invert(100%)",
+          mixBlendMode: "difference",
         }}
       ></div>
     </>

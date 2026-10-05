@@ -13,18 +13,14 @@ function SmoothScroll({ children, isInsideModal = false }: LenisProps) {
     // called every scroll
   });
 
-  useEffect(() => {
-    document.addEventListener("DOMContentLoaded", () => {
-      lenis?.stop();
-      lenis?.start();
-    });
-  }, []);
-
   return (
     <ReactLenis
       root
       options={{
-        duration: 2,
+        lerp: 0.08,
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
         prevent: (node) => {
           if (isInsideModal) return true;
           const modalOpen = node.classList.contains("modall");
