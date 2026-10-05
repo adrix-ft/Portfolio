@@ -242,11 +242,7 @@ const AnimatedBackground = () => {
         },
         {
           y: -Math.PI / 2,
-          duration: 5,
-          repeat: -1,
-          yoyo: true,
-          yoyoEase: true,
-          // ease: "none",
+          duration: 5, ease: "power2.out",
           delay: 2.5,
           immediateRender: false,
           paused: true,
@@ -539,12 +535,7 @@ const AnimatedBackground = () => {
           if (!keycap) return;
           const t = gsap.to(keycap?.position, {
             y: Math.random() * 200 + 200,
-            duration: Math.random() * 2 + 2,
-            delay: idx * 0.6,
-            repeat: -1,
-            yoyo: true,
-            yoyoEase: "none",
-            ease: "elastic.out(1,0.3)",
+            duration: Math.random() * 3 + 4, delay: idx * 0.2, ease: "power3.out",
           });
           tweens.push(t);
         });
@@ -602,3 +593,4 @@ const AnimatedBackground = () => {
 };
 
 export default AnimatedBackground;
+
