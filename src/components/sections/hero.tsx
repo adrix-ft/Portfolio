@@ -63,7 +63,7 @@ const HeroSection = () => {
               className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-8 px-4"
             >
               {/* Outlined Text */}
-              <div className="text-[17vw] md:text-[8vw] lg:text-[120px] xl:text-[150px] leading-[0.8] md:leading-none font-black tracking-tighter text-transparent text-outline flex">
+              <div className="text-[12vw] md:text-[8vw] lg:text-[120px] xl:text-[150px] leading-[0.8] md:leading-none font-light md:font-black tracking-widest md:tracking-tighter text-transparent text-outline flex">
                 {"ADARSH".split("").map((char, index) => (
                   <motion.span 
                     key={index}
@@ -77,7 +77,7 @@ const HeroSection = () => {
                 ))}
               </div>
               {/* Solid Text */}
-              <div className="text-[17vw] md:text-[8vw] lg:text-[120px] xl:text-[150px] leading-[0.8] md:leading-none font-black tracking-tighter flex">
+              <div className="text-[12vw] md:text-[8vw] lg:text-[120px] xl:text-[150px] leading-[0.8] md:leading-none font-light md:font-black tracking-widest md:tracking-tighter flex">
                 {"YADAV".split("").map((char, index) => (
                   <motion.span 
                     key={index}
@@ -175,7 +175,7 @@ const HeroSection = () => {
             <div className="h-full md:h-auto flex items-end justify-center w-full">
               <div 
                 ref={imageContainerRef}
-                className="relative pointer-events-auto cursor-crosshair w-[200%] max-w-none md:w-auto md:max-w-[100vw] flex justify-center shrink-0"
+                className="relative pointer-events-auto cursor-crosshair w-[135%] max-w-none md:w-auto md:max-w-[100vw] flex justify-center shrink-0"
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
