@@ -63,7 +63,7 @@ export default function ReadmeFetcher({ repo }: { repo: string }) {
   }, [repo]);
 
   return (
-    <div className="prose prose-sm md:prose-base prose-invert w-full max-w-none font-sans mt-4 p-3 md:p-8 bg-zinc-900 rounded-xl border border-white/10 shadow-inner overflow-x-hidden break-words [&_img]:max-w-full [&_img]:rounded-md [&_pre]:max-w-full [&_pre]:overflow-x-auto prose-h1:text-xl md:prose-h1:text-3xl prose-h2:text-lg md:prose-h2:text-2xl">
+    <div className="prose prose-sm md:prose-base prose-invert w-full max-w-none font-sans mt-4 p-3 md:p-8 bg-zinc-900 rounded-xl border border-white/10 shadow-inner overflow-x-hidden break-words [&_img]:max-w-full [&_img]:inline-block [&_a]:break-words [&_img]:m-1 [&_img]:rounded-md [&_pre]:max-w-full [&_pre]:overflow-x-auto prose-h1:text-xl md:prose-h1:text-3xl prose-h2:text-lg md:prose-h2:text-2xl">
       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {content}
       </ReactMarkdown>
