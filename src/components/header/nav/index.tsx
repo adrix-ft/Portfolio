@@ -117,6 +117,23 @@ const Index = ({ setIsActive }: IndexProps) => {
                 </motion.span>
               </Link>
             )})}
+            {/* Bouncing Luffy Graphic */}
+            <motion.div 
+              className="mt-2 md:mt-4 pointer-events-none"
+              initial={{ y: 0, rotate: 0 }}
+              animate={{ 
+                y: [-15, 0, -15], 
+                rotate: [-6, 6, -6],
+                filter: [
+                  "drop-shadow(0px 0px 10px rgba(255,255,255,0.2))",
+                  "drop-shadow(0px 0px 25px rgba(255,255,255,0.6))",
+                  "drop-shadow(0px 0px 10px rgba(255,255,255,0.2))"
+                ]
+              }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            >
+              <Image src="/luffy.png" alt="Luffy" width={120} height={120} className="w-[80px] md:w-[100px] h-auto object-contain ml-2" />
+            </motion.div>
           </div>
         </div>
 
@@ -138,23 +155,7 @@ const Index = ({ setIsActive }: IndexProps) => {
           </motion.div>
         </div>
 
-        {/* Bouncing Luffy Graphic */}
-        <motion.div 
-          className="absolute bottom-8 right-4 md:bottom-12 md:right-12 z-[60] pointer-events-none"
-          initial={{ y: 0, rotate: 0 }}
-          animate={{ 
-            y: [-15, 0, -15], 
-            rotate: [-6, 6, -6],
-            filter: [
-              "drop-shadow(0px 0px 10px rgba(255,255,255,0.2))",
-              "drop-shadow(0px 0px 25px rgba(255,255,255,0.6))",
-              "drop-shadow(0px 0px 10px rgba(255,255,255,0.2))"
-            ]
-          }}
-          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-        >
-          <Image src="/luffy.png" alt="Luffy" width={120} height={120} className="w-[100px] md:w-[140px] h-auto object-contain" />
-        </motion.div>
+
 
       </div>
     </motion.div>
