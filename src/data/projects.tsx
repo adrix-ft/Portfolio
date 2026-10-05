@@ -338,7 +338,7 @@ const projects: Project[] = [
     },
     get content() {
       return (
-          <div className="w-full overflow-hidden">
+          <div className="w-full min-w-0 overflow-hidden">
             <ProjectsLinks live={this.live} repo={this.github} />
           {this.github && <ReadmeFetcher repo={this.github} />}
         </div>
@@ -368,7 +368,7 @@ const projects: Project[] = [
     },
     get content() {
       return (
-          <div className="w-full overflow-hidden">
+          <div className="w-full min-w-0 overflow-hidden">
             <ProjectsLinks live={this.live} repo={this.github} />
           {this.github && <ReadmeFetcher repo={this.github} />}
         </div>
@@ -400,7 +400,7 @@ const projects: Project[] = [
     },
     get content() {
       return (
-          <div className="w-full overflow-hidden">
+          <div className="w-full min-w-0 overflow-hidden">
             <ProjectsLinks live={this.live} repo={this.github} />
           {this.github && <ReadmeFetcher repo={this.github} />}
         </div>
@@ -428,7 +428,7 @@ const projects: Project[] = [
     },
     get content() {
       return (
-          <div className="w-full overflow-hidden">
+          <div className="w-full min-w-0 overflow-hidden">
             <ProjectsLinks live={this.live} repo={this.github} />
           {this.github && <ReadmeFetcher repo={this.github} />}
         </div>
