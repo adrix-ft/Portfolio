@@ -120,17 +120,19 @@ const Index = ({ setIsActive }: IndexProps) => {
             {/* Bouncing Luffy Graphic */}
             <motion.div 
               className="mt-12 md:mt-16 pointer-events-none"
-              initial={{ y: 0, rotate: 0 }}
+              style={{ transformOrigin: "bottom center" }}
+              initial={{ y: 0, scaleY: 1, scaleX: 1 }}
               animate={{ 
-                y: [-40, 0, -40], 
-                rotate: [-12, 12, -12],
+                y: [0, -60, 0], 
+                scaleY: [0.7, 1.1, 0.7],
+                scaleX: [1.3, 0.9, 1.3],
                 filter: [
                   "drop-shadow(0px 0px 10px rgba(255,255,255,0.2))",
                   "drop-shadow(0px 0px 25px rgba(255,255,255,0.6))",
                   "drop-shadow(0px 0px 10px rgba(255,255,255,0.2))"
                 ]
               }}
-              transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+              transition={{ repeat: Infinity, duration: 0.8, ease: ["easeOut", "easeIn"] }}
             >
               <Image src="/luffy.png" alt="Luffy" width={120} height={120} className="w-[140px] md:w-[180px] h-auto object-contain ml-2" />
             </motion.div>
