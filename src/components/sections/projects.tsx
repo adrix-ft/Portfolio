@@ -134,11 +134,11 @@ const Modall = ({ project }: { project: Project }) => {
           </div>
         </ModalTrigger>
         <ModalBody className="md:max-w-4xl md:max-h-[80%] overflow-auto">
-          <SmoothScroll isInsideModal={true}>
+          
             <ModalContent>
               <ProjectContents project={project} />
             </ModalContent>
-          </SmoothScroll>
+          
           <ModalFooter className="gap-4">
             <button className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28">
               Cancel
