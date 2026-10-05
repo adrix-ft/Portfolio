@@ -569,9 +569,16 @@ const AnimatedBackground = () => {
     };
     return { start, stop };
   };
+  if (isMobile) {
+    return (
+      <div className="fixed inset-0 bg-slate-50 dark:bg-[#0A0A0A] -z-10" />
+    );
+  }
+
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
+
         <Spline
           ref={splineContainer}
           onLoad={(app: Application) => {

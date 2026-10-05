@@ -72,8 +72,7 @@ export default function RootLayout({
           defaultTheme="light"
           disableTransitionOnChange
         >
-          <Particles
-            className="fixed inset-0 -z-10 animate-fade-in"
+          <Particles className="hidden md:block fixed inset-0 -z-10 animate-fade-in"
             quantity={100}
           />
           <Preloader>
