@@ -569,25 +569,34 @@ const AnimatedBackground = () => {
     };
     return { start, stop };
   };
-  if (isMobile) {
-    return (
-      <div className="fixed inset-0 bg-slate-50 dark:bg-[#0A0A0A] -z-10" />
-    );
-  }
-
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
-
-        <Spline
-          ref={splineContainer}
-          onLoad={(app: Application) => {
-            setSplineApp(app);
-            bypassLoading();
-          }}
-          scene="/assets/skills-keyboard.spline"
+      {isMobile && (
+        <div 
+          className={cn(
+            "fixed inset-0 bg-slate-50 dark:bg-[#0A0A0A] -z-20 transition-opacity duration-1000",
+            activeSection === "skills" ? "opacity-0" : "opacity-100"
+          )} 
         />
-      </Suspense>
+      )}
+      
+      <div 
+        className={cn(
+          "fixed inset-0 -z-10 transition-opacity duration-1000",
+          isMobile && activeSection !== "skills" ? "opacity-0 pointer-events-none" : "opacity-100"
+        )}
+      >
+        <Suspense fallback={<div>Loading...</div>}>
+          <Spline
+            ref={splineContainer}
+            onLoad={(app: Application) => {
+              setSplineApp(app);
+              bypassLoading();
+            }}
+            scene="/assets/skills-keyboard.spline"
+          />
+        </Suspense>
+      </div>
     </>
   );
 };
