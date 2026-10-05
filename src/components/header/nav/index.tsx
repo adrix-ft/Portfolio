@@ -122,15 +122,15 @@ const Index = ({ setIsActive }: IndexProps) => {
               className="mt-12 md:mt-16 pointer-events-none"
               initial={{ y: 0, rotate: 0 }}
               animate={{ 
-                y: [-15, 0, -15], 
-                rotate: [-6, 6, -6],
+                y: [-40, 0, -40], 
+                rotate: [-12, 12, -12],
                 filter: [
                   "drop-shadow(0px 0px 10px rgba(255,255,255,0.2))",
                   "drop-shadow(0px 0px 25px rgba(255,255,255,0.6))",
                   "drop-shadow(0px 0px 10px rgba(255,255,255,0.2))"
                 ]
               }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
             >
               <Image src="/luffy.png" alt="Luffy" width={120} height={120} className="w-[140px] md:w-[180px] h-auto object-contain ml-2" />
             </motion.div>
