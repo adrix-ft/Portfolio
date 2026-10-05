@@ -214,7 +214,7 @@ const ServicesSection = () => {
                           initial={{ opacity: 0, scale: 0.95 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.4, duration: 0.5 }}
-                          className="w-[120px] sm:w-[160px] md:w-[250px] lg:w-[350px] aspect-video bg-zinc-200 dark:bg-zinc-800 rounded-sm overflow-hidden relative shadow-md shrink-0"
+                          className="w-[120px] sm:w-[160px] md:w-[250px] lg:w-[350px] aspect-video bg-zinc-200 dark:bg-zinc-800 rounded-sm overflow-hidden relative shadow-md shrink-0 cursor-pointer" onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new CustomEvent("setCategory", { detail: service.category })); }}
                         >
                           <Image src={service.image} alt={service.title} fill className="object-cover" />
                         </motion.div>
