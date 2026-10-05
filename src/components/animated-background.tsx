@@ -253,7 +253,7 @@ const AnimatedBackground = () => {
         }
       );
       if (activeSection === "hero") {
-        rotateKeyboard.restart();
+        if (!isMobile) rotateKeyboard.restart();
         teardownKeyboard.pause();
       } else if (activeSection === "contact") {
         rotateKeyboard.pause();
@@ -268,15 +268,15 @@ const AnimatedBackground = () => {
       }
       if (activeSection === "projects") {
         await sleep(300);
-        bongoAnimation?.start();
+        if (!isMobile) bongoAnimation?.start();
       } else {
         await sleep(200);
         bongoAnimation?.stop();
       }
       if (activeSection === "contact") {
         await sleep(600);
-        teardownKeyboard.restart();
-        keycapAnimtations?.start();
+        if (!isMobile) teardownKeyboard.restart();
+        if (!isMobile) keycapAnimtations?.start();
       } else {
         await sleep(600);
         teardownKeyboard.pause();
@@ -383,7 +383,7 @@ const AnimatedBackground = () => {
         trigger: "#skills",
         start: "top 50%",
         end: "bottom bottom",
-        scrub: true,
+        scrub: !isMobile,
         // markers: true,
         onEnter: () => {
           setActiveSection("skills");
@@ -420,7 +420,7 @@ const AnimatedBackground = () => {
         trigger: "#projects",
         start: "top 70%",
         end: "bottom bottom",
-        scrub: true,
+        scrub: !isMobile,
         // markers: true,
         onEnter: () => {
           setActiveSection("projects");
@@ -460,7 +460,7 @@ const AnimatedBackground = () => {
         trigger: "#contact",
         start: "top 30%",
         end: "bottom bottom",
-        scrub: true,
+        scrub: !isMobile,
         // markers: true,
         onEnter: () => {
           setActiveSection("contact");
@@ -583,7 +583,7 @@ const AnimatedBackground = () => {
       <div 
         className={cn(
           "fixed inset-0 -z-10 transition-opacity duration-1000",
-          isMobile && activeSection !== "skills" ? "opacity-0 pointer-events-none" : "opacity-100"
+          isMobile && activeSection !== "skills" ? "opacity-0 pointer-events-none hidden" : "opacity-100"
         )}
       >
         <Suspense fallback={<div>Loading...</div>}>
