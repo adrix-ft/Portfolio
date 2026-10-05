@@ -119,7 +119,7 @@ const Index = ({ setIsActive }: IndexProps) => {
             )})}
             {/* Bouncing Luffy Graphic */}
             <motion.div 
-              className="mt-2 md:mt-4 pointer-events-none"
+              className="mt-6 md:mt-10 pointer-events-none"
               initial={{ y: 0, rotate: 0 }}
               animate={{ 
                 y: [-15, 0, -15], 
@@ -132,7 +132,7 @@ const Index = ({ setIsActive }: IndexProps) => {
               }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
             >
-              <Image src="/luffy.png" alt="Luffy" width={120} height={120} className="w-[80px] md:w-[100px] h-auto object-contain ml-2" />
+              <Image src="/luffy.png" alt="Luffy" width={120} height={120} className="w-[110px] md:w-[140px] h-auto object-contain ml-2" />
             </motion.div>
           </div>
         </div>
