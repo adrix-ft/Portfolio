@@ -109,7 +109,7 @@ const Index = ({ setIsActive }: IndexProps) => {
                   animate="enter"
                   exit="exit"
                   className={cn(
-                    "text-[48px] leading-[48px] font-bold font-sans tracking-tight transition-transform duration-300 inline-block group-hover:translate-x-4", 
+                    "text-[36px] leading-[40px] md:text-[48px] md:leading-[48px] font-light md:font-medium font-sans tracking-wide transition-transform duration-300 inline-block group-hover:translate-x-4", 
                     isMatch ? "text-white" : "text-white/70 hover:text-white"
                   )}
                 >
