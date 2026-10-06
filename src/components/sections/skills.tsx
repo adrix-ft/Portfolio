@@ -107,7 +107,7 @@ const SkillsSection = () => {
       id="skills" 
       className="w-full min-h-screen relative flex flex-col items-center justify-center py-32 overflow-hidden"
     >
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{ __html: ` 
         @keyframes grain-jiggle {
           0%, 100% { background-position: 0 0; }
           20% { background-position: 10px 15px; }
@@ -118,7 +118,7 @@ const SkillsSection = () => {
         .animate-grain {
           animation: grain-jiggle 0.4s steps(2) infinite;
         }
-      \ }} />
+      ` }} />
       <div 
         className="absolute inset-0 z-0 opacity-100 dark:opacity-30 animate-grain" 
         style={{ 
@@ -157,3 +157,5 @@ const SkillsSection = () => {
 };
 
 export default SkillsSection;
+
+
