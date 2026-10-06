@@ -28,7 +28,7 @@ const CassetteWheel = ({ className }: { className?: string }) => (
 
 const CassetteCard = ({ skill, index }: { skill: any; index: number }) => {
   return (
-    <div className="relative flex flex-col items-center group w-[180px] sm:w-[260px] md:w-[320px] lg:w-[380px] xl:w-[400px] m-2 sm:m-4">
+    <div className="relative flex flex-col items-center group w-[160px] sm:w-[240px] md:w-[300px] lg:w-[320px] xl:w-[340px] 2xl:w-[380px] m-2 sm:m-3 lg:m-4">
       {/* Hanging string */}
       <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-[120px] sm:w-[180px] h-[48px] z-0">
         <svg viewBox="0 0 100 50" className="w-full h-full stroke-neutral-400 stroke-[1.5] fill-none drop-shadow-sm">
@@ -41,34 +41,42 @@ const CassetteCard = ({ skill, index }: { skill: any; index: number }) => {
       {/* Cassette Body */}
       <div className="relative w-full aspect-[1.58] transition-transform duration-700 ease-out origin-[50%_-48px] group-hover:rotate-3 group-hover:-translate-y-1 z-10">
         
-        {/* Color Tint Background (Behind Image, inset to avoid bleeding border) */}
-        <div 
-          className="absolute top-[3%] bottom-[3%] left-[2%] right-[2%] rounded-[4%] opacity-100" 
-          style={{ backgroundColor: skill.color, zIndex: 10 }}
-        ></div>
-        <div 
-          className="absolute top-[3%] bottom-[3%] left-[2%] right-[2%] rounded-[4%] opacity-50 mix-blend-overlay" 
-          style={{ backgroundColor: skill.color, zIndex: 10 }}
-        ></div>
-
-        {/* Wheels at z-15 (between color div and image, so they block the color from showing through holes) */}
-        <div className="absolute top-[39%] left-[23.5%] w-[17%] h-[27%] flex items-center justify-center" style={{ zIndex: 15 }}>
+        {/* Wheels at z-5 (Behind the Cassette Image!) */}
+        <div className="absolute top-[39%] left-[23.5%] w-[17%] h-[27%] flex items-center justify-center" style={{ zIndex: 5 }}>
           <CassetteWheel className="w-full h-full drop-shadow-sm" />
         </div>
-        <div className="absolute top-[39%] right-[23.5%] w-[17%] h-[27%] flex items-center justify-center" style={{ zIndex: 15 }}>
+        <div className="absolute top-[39%] right-[23.5%] w-[17%] h-[27%] flex items-center justify-center" style={{ zIndex: 5 }}>
           <CassetteWheel className="w-full h-full drop-shadow-sm" />
         </div>
 
-        {/* Cassette Image (unoptimized) */}
+        {/* Cassette Image */}
         <Image 
           src="/assets/skills/cassette-shell-560.webp" 
           alt="Cassette" 
           fill 
           unoptimized
           sizes="(max-width: 640px) 220px, (max-width: 768px) 320px, 420px"
-          className="object-cover z-20 pointer-events-none drop-shadow-2xl" 
+          className="object-cover z-10 pointer-events-none drop-shadow-2xl" 
         />
         
+        {/* Color Tint Block (OVER the image, PERFECTLY MASKED!) */}
+        <div 
+          className="absolute inset-0 z-20 pointer-events-none opacity-80 mix-blend-overlay" 
+          style={{ 
+            backgroundColor: skill.color,
+            WebkitMaskImage: 'url(/assets/skills/cassette-shell-560.webp)',
+            WebkitMaskSize: '100% 100%',
+          }}
+        ></div>
+        <div 
+          className="absolute inset-0 z-20 pointer-events-none opacity-30 mix-blend-multiply" 
+          style={{ 
+            backgroundColor: skill.color,
+            WebkitMaskImage: 'url(/assets/skills/cassette-shell-560.webp)',
+            WebkitMaskSize: '100% 100%',
+          }}
+        ></div>
+
         {/* Content on the top sticker */}
         <div className="absolute top-[16%] left-[10%] w-[80%] h-[24%] z-30 flex items-center justify-between px-3 sm:px-4">
           <div className="w-[16px] h-[16px] sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px] relative shrink-0">
