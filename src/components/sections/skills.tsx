@@ -28,9 +28,9 @@ const CassetteWheel = ({ className }: { className?: string }) => (
 
 const CassetteCard = ({ skill, index }: { skill: any; index: number }) => {
   return (
-    <div className="relative flex flex-col items-center group w-[220px] sm:w-[320px] md:w-[420px] m-4 sm:m-6">
+    <div className="relative flex flex-col items-center group w-[180px] sm:w-[260px] md:w-[320px] lg:w-[380px] xl:w-[400px] m-2 sm:m-4">
       {/* Hanging string */}
-      <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-[140px] sm:w-[200px] h-[48px] z-0">
+      <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-[120px] sm:w-[180px] h-[48px] z-0">
         <svg viewBox="0 0 100 50" className="w-full h-full stroke-neutral-400 stroke-[1.5] fill-none drop-shadow-sm">
           <path d="M 5 50 L 50 10 L 95 50" />
           <circle cx="50" cy="10" r="4" className="fill-neutral-600 stroke-none" />
@@ -41,25 +41,23 @@ const CassetteCard = ({ skill, index }: { skill: any; index: number }) => {
       {/* Cassette Body */}
       <div className="relative w-full aspect-[1.58] transition-transform duration-700 ease-out origin-[50%_-48px] group-hover:rotate-3 group-hover:-translate-y-1 z-10">
         
-        {/* Wheels at z-0 */}
-        <div className="absolute top-[39%] left-[23.5%] w-[17%] h-[27%] z-0 flex items-center justify-center">
-          <CassetteWheel className="w-full h-full drop-shadow-sm" />
-        </div>
-        <div className="absolute top-[39%] right-[23.5%] w-[17%] h-[27%] z-0 flex items-center justify-center">
-          <CassetteWheel className="w-full h-full drop-shadow-sm" />
-        </div>
-
-        {/* Color Tint Background (Behind Image) */}
+        {/* Color Tint Background (Behind Image, inset to avoid bleeding border) */}
         <div 
-          className="absolute inset-0 z-10 opacity-100" 
-          style={{ 
-            backgroundColor: skill.color,
-            WebkitMaskImage: 'url(/assets/skills/cassette-shell-560.webp)',
-            WebkitMaskSize: '100% 100%',
-            maskImage: 'url(/assets/skills/cassette-shell-560.webp)',
-            maskSize: '100% 100%'
-          }}
+          className="absolute top-[3%] bottom-[3%] left-[2%] right-[2%] rounded-[4%] opacity-100" 
+          style={{ backgroundColor: skill.color, zIndex: 10 }}
         ></div>
+        <div 
+          className="absolute top-[3%] bottom-[3%] left-[2%] right-[2%] rounded-[4%] opacity-50 mix-blend-overlay" 
+          style={{ backgroundColor: skill.color, zIndex: 10 }}
+        ></div>
+
+        {/* Wheels at z-15 (between color div and image, so they block the color from showing through holes) */}
+        <div className="absolute top-[39%] left-[23.5%] w-[17%] h-[27%] flex items-center justify-center" style={{ zIndex: 15 }}>
+          <CassetteWheel className="w-full h-full drop-shadow-sm" />
+        </div>
+        <div className="absolute top-[39%] right-[23.5%] w-[17%] h-[27%] flex items-center justify-center" style={{ zIndex: 15 }}>
+          <CassetteWheel className="w-full h-full drop-shadow-sm" />
+        </div>
 
         {/* Cassette Image (unoptimized) */}
         <Image 
@@ -71,30 +69,18 @@ const CassetteCard = ({ skill, index }: { skill: any; index: number }) => {
           className="object-cover z-20 pointer-events-none drop-shadow-2xl" 
         />
         
-        {/* Color Overlay (Over Image, for extra vibrancy on the plastic) */}
-        <div 
-          className="absolute inset-0 z-25 pointer-events-none mix-blend-overlay opacity-60" 
-          style={{ 
-            backgroundColor: skill.color,
-            WebkitMaskImage: 'url(/assets/skills/cassette-shell-560.webp)',
-            WebkitMaskSize: '100% 100%',
-            maskImage: 'url(/assets/skills/cassette-shell-560.webp)',
-            maskSize: '100% 100%'
-          }}
-        ></div>
-        
         {/* Content on the top sticker */}
         <div className="absolute top-[16%] left-[10%] w-[80%] h-[24%] z-30 flex items-center justify-between px-3 sm:px-4">
-          <div className="w-[20px] h-[20px] sm:w-[32px] sm:h-[32px] md:w-[40px] md:h-[40px] relative shrink-0">
+          <div className="w-[16px] h-[16px] sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px] relative shrink-0">
             <Image src={`/assets/skills/${skill.logo}`} alt={skill.name} fill className="object-contain" />
           </div>
-          <span className="font-serif text-base sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight truncate px-2">{skill.name}</span>
-          <span className="text-[7px] sm:text-[10px] md:text-xs font-mono text-gray-600 font-bold leading-tight text-right shrink-0">A<br/>{index + 1}</span>
+          <span className="font-serif text-sm sm:text-xl md:text-2xl font-bold text-gray-800 tracking-tight truncate px-2">{skill.name}</span>
+          <span className="text-[6px] sm:text-[8px] md:text-[10px] font-mono text-gray-600 font-bold leading-tight text-right shrink-0">A<br/>{index + 1}</span>
         </div>
         
         {/* Category on the bottom sticker */}
         <div className="absolute bottom-[16%] left-[15%] w-[70%] h-[12%] z-30 flex items-center justify-center">
-          <span className="font-serif text-[8px] sm:text-xs md:text-sm font-semibold text-gray-800 tracking-wider truncate">{skill.category}</span>
+          <span className="font-serif text-[7px] sm:text-[10px] md:text-xs font-semibold text-gray-800 tracking-wider truncate">{skill.category}</span>
         </div>
       </div>
     </div>
