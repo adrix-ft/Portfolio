@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Archivo_Black } from "next/font/google";
+import { Archivo_Black } from "next/font/google";
 import "./globals.css";
 import ElasticCursor from "@/components/ui/ElasticCursor";
 import Particles from "@/components/Particles";
@@ -13,6 +13,8 @@ import Preloader from "@/components/preloader";
 import EasterEggs from "@/components/easter-eggs";
 import { config } from "@/data/config";
 import { Analytics } from "@vercel/analytics/react";
+
+import SmoothScroll from "@/components/smooth-scroll";
 
 export const metadata: Metadata = {
   metadataBase: new URL(config.site),
@@ -59,12 +61,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={["overflow-x-hidden", archivoBlack.className].join(" ")}>
       <head>
-        <Script
-          defer
-          src={process.env.UMAMI_DOMAIN}
-          data-website-id={process.env.UMAMI_SITE_ID}
-        ></Script>
-        {/* <Analytics /> */}
+        {process.env.UMAMI_DOMAIN && (
+          <Script
+            defer
+            src={process.env.UMAMI_DOMAIN}
+            data-website-id={process.env.UMAMI_SITE_ID}
+          />
+        )}
       </head>
       <body className="overflow-x-hidden">
         <ThemeProvider
@@ -76,11 +79,13 @@ export default function RootLayout({
             quantity={100}
           />
           <Preloader>
-            <TooltipProvider>
-              <Header />
-              {children}
-              <Footer />
-            </TooltipProvider>
+            <SmoothScroll>
+              <TooltipProvider>
+                <Header />
+                {children}
+                <Footer />
+              </TooltipProvider>
+            </SmoothScroll>
             <Toaster />
             <EasterEggs />
             <ElasticCursor />

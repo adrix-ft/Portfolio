@@ -1,71 +1,21 @@
-/**
- * Disclaimer: This component is not entirely my own
- */
-
 "use client";
+
 import React, {
-  useCallback,
   useEffect,
-  useLayoutEffect,
   useRef,
-  useState,
 } from "react";
 import { gsap } from "gsap";
 import { cn } from "@/lib/utils";
-import { useMouse } from "@/hooks/use-mouse";
 import { usePreloader } from "../preloader";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
-// Gsap Ticker Function
-function useTicker(callback: any, paused: boolean) {
-  useEffect(() => {
-    if (!paused && callback) {
-      gsap.ticker.add(callback);
-    }
-    return () => {
-      gsap.ticker.remove(callback);
-    };
-  }, [callback, paused]);
-}
-
-const EMPTY = {} as {
-  x: Function;
-  y: Function;
-  r?: Function;
-  width?: Function;
-  rt?: Function;
-  sx?: Function;
-  sy?: Function;
-};
-function useInstance(value = {}) {
-  const ref = useRef(EMPTY);
-  if (ref.current === EMPTY) {
-    ref.current = typeof value === "function" ? value() : value;
-  }
-  return ref.current;
-}
-
-// Function for Mouse Move Scale Change
 function getScale(diffX: number, diffY: number) {
-  const distance = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+  const distance = Math.sqrt(diffX * diffX + diffY * diffY);
   return Math.min(distance / 735, 0.35);
 }
 
-// Function For Mouse Movement Angle in Degrees
 function getAngle(diffX: number, diffY: number) {
   return (Math.atan2(diffY, diffX) * 180) / Math.PI;
-}
-
-function getRekt(el: HTMLElement) {
-  if (el.classList.contains("cursor-can-hover"))
-    return el.getBoundingClientRect();
-  else if (el.parentElement?.classList.contains("cursor-can-hover"))
-    return el.parentElement.getBoundingClientRect();
-  else if (
-    el.parentElement?.parentElement?.classList.contains("cursor-can-hover")
-  )
-    return el.parentElement.parentElement.getBoundingClientRect();
-  return null;
 }
 
 const CURSOR_DIAMETER = 50;
@@ -74,145 +24,152 @@ function ElasticCursor() {
   const { loadingPercent, isLoading } = usePreloader();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  // React Refs for Jelly Blob and Text
   const jellyRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
-  const { x, y } = useMouse();
-
-  // Save pos and velocity Objects
-  const pos = useInstance(() => ({ x: 0, y: 0 }));
-  const vel = useInstance(() => ({ x: 0, y: 0 }));
-  const set = useInstance();
-
-  // Set GSAP quick setter Values on useLayoutEffect Update
-  useLayoutEffect(() => {
-    gsap.set(jellyRef.current, { xPercent: -50, yPercent: -50 });
-    set.x = gsap.quickSetter(jellyRef.current, "x", "px");
-    set.y = gsap.quickSetter(jellyRef.current, "y", "px");
-    set.r = gsap.quickSetter(jellyRef.current, "rotate", "deg");
-    set.sx = gsap.quickSetter(jellyRef.current, "scaleX");
-    set.sy = gsap.quickSetter(jellyRef.current, "scaleY");
-    set.width = gsap.quickSetter(jellyRef.current, "width", "px");
-  }, []);
-
-  // Start Animation loop
-  const loop = useCallback(() => {
-    if (!set.width || !set.sx || !set.sy || !set.r) return;
-    // Calculate angle and scale based on velocity
-    var rotation = getAngle(+vel.x, +vel.y); // Mouse Move Angle
-    var scale = getScale(+vel.x, +vel.y); // Blob Squeeze Amount
-
-    // Set GSAP quick setter Values on Loop Function
-    if (!isHovering && !isLoading) {
-      set.x(pos.x);
-      set.y(pos.y);
-      set.width(50 + scale * 300);
-      set.r(rotation);
-      set.sx(1 + scale);
-      set.sy(1 - scale * 2);
-    } else {
-      set.r(0);
-    }
-  }, [isHovering, isLoading]);
-
-  const [cursorMoved, setCursorMoved] = useState(false);
-  // Run on Mouse Move
-  useLayoutEffect(() => {
-    if (isMobile) return;
-    // Caluclate Everything Function
-    const setFromEvent = (e: MouseEvent) => {
-      if (!jellyRef.current) return;
-      if (!cursorMoved) {
-        setCursorMoved(true);
-      }
-      const el = e.target as HTMLElement;
-      const hoverElemRect = getRekt(el);
-      if (hoverElemRect) {
-        const rect = hoverElemRect;
-        setIsHovering(true);
-        gsap.to(jellyRef.current, {
-          rotate: 0,
-          duration: 0,
-        });
-        gsap.to(jellyRef.current, {
-          width: rect.width + 20,
-          height: rect.height + 20,
-          x: rect.left + rect.width / 2,
-          y: rect.top + rect.height / 2,
-          borderRadius: 10,
-          duration: 0.3,
-          ease: "back.out(1.5)",
-        });
-
-        // return;
-      } else {
-        gsap.to(jellyRef.current, {
-          borderRadius: 50,
-          width: CURSOR_DIAMETER,
-          height: CURSOR_DIAMETER,
-        });
-        setIsHovering(false);
-      }
-      // Mouse X and Y
-      const x = e.clientX;
-      const y = e.clientY;
-
-      // Animate Position and calculate Velocity with GSAP
-      gsap.to(pos, {
-        x: x,
-        y: y,
-        duration: 1.5,
-        ease: "elastic.out(1, 0.5)",
-        onUpdate: () => {
-          // @ts-ignore
-          vel.x = (x - pos.x) * 1.2;
-          // @ts-ignore
-          vel.y = (y - pos.y) * 1.2;
-        },
-      });
-
-      loop();
-    };
-
-    if (!isLoading) window.addEventListener("mousemove", setFromEvent);
-    return () => {
-      if (!isLoading) window.removeEventListener("mousemove", setFromEvent);
-    };
-  }, [isLoading]);
+  const dotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!jellyRef.current) return;
-    jellyRef.current.style.height = "2rem"; // "8rem";
-    jellyRef.current.style.borderRadius = "1rem";
-    jellyRef.current.style.width = loadingPercent * 2 + "vw";
-  }, [loadingPercent]);
+    if (isMobile || typeof window === "undefined") return;
 
-  useTicker(loop, isLoading || !cursorMoved || isMobile);
+    const jelly = jellyRef.current;
+    const dot = dotRef.current;
+    if (!jelly || !dot) return;
+
+    gsap.set(jelly, { xPercent: -50, yPercent: -50 });
+
+    const setX = gsap.quickSetter(jelly, "x", "px");
+    const setY = gsap.quickSetter(jelly, "y", "px");
+    const setR = gsap.quickSetter(jelly, "rotate", "deg");
+    const setSx = gsap.quickSetter(jelly, "scaleX");
+    const setSy = gsap.quickSetter(jelly, "scaleY");
+    const setWidth = gsap.quickSetter(jelly, "width", "px");
+
+    const targetPos = { x: -100, y: -100 };
+    const pos = { x: -100, y: -100 };
+    const vel = { x: 0, y: 0 };
+    let isHovering = false;
+    let hoveredEl: HTMLElement | null = null;
+    let hasMoved = false;
+
+    const updateHoverTarget = (target: HTMLElement | null) => {
+      const hoverTarget = target?.closest(".cursor-can-hover, button, a") as HTMLElement | null;
+      if (hoverTarget !== hoveredEl) {
+        hoveredEl = hoverTarget;
+        if (hoverTarget) {
+          isHovering = true;
+          const rect = hoverTarget.getBoundingClientRect();
+          gsap.to(jelly, {
+            rotate: 0,
+            width: rect.width + 16,
+            height: rect.height + 16,
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2,
+            borderRadius: 12,
+            duration: 0.3,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+        } else {
+          isHovering = false;
+          gsap.to(jelly, {
+            width: CURSOR_DIAMETER,
+            height: CURSOR_DIAMETER,
+            borderRadius: 50,
+            duration: 0.3,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+        }
+      }
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      if (!hasMoved) {
+        hasMoved = true;
+        jelly.style.opacity = "1";
+        dot.style.opacity = "1";
+      }
+
+      targetPos.x = e.clientX;
+      targetPos.y = e.clientY;
+
+      // Position the center dot instantly with 0ms latency using translate3d
+      dot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+
+      updateHoverTarget(e.target as HTMLElement | null);
+    };
+
+    // Smooth elastic ticker loop for the jelly trail
+    const tickerCallback = () => {
+      if (!hasMoved) return;
+
+      if (!isHovering) {
+        // High-performance spring interpolation
+        const prevX = pos.x;
+        const prevY = pos.y;
+
+        pos.x += (targetPos.x - pos.x) * 0.18;
+        pos.y += (targetPos.y - pos.y) * 0.18;
+
+        vel.x = (pos.x - prevX) * 2.5;
+        vel.y = (pos.y - prevY) * 2.5;
+
+        const rotation = getAngle(vel.x, vel.y);
+        const scale = getScale(vel.x, vel.y);
+
+        setX(pos.x);
+        setY(pos.y);
+        setWidth(CURSOR_DIAMETER + scale * 260);
+        setR(rotation);
+        setSx(1 + scale);
+        setSy(Math.max(0.4, 1 - scale * 1.8));
+      }
+    };
+
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    gsap.ticker.add(tickerCallback);
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      gsap.ticker.remove(tickerCallback);
+    };
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (!jellyRef.current || isMobile) return;
+    if (isLoading) {
+      jellyRef.current.style.height = "2rem";
+      jellyRef.current.style.borderRadius = "1rem";
+      jellyRef.current.style.width = loadingPercent * 2 + "vw";
+    }
+  }, [loadingPercent, isLoading, isMobile]);
+
   if (isMobile) return null;
-  // Return UI
+
   return (
     <>
       <div
         ref={jellyRef}
-        id={"jelly-id"}
+        id="jelly-id"
         className={cn(
-          `w-[${CURSOR_DIAMETER}px] h-[${CURSOR_DIAMETER}px] bg-white`,
-          "jelly-blob fixed left-0 top-0 rounded-lg z-[999] pointer-events-none will-change-transform",
-          "translate-x-[-50%] translate-y-[-50%]"
+          "jelly-blob fixed left-0 top-0 rounded-full pointer-events-none will-change-transform opacity-0 transition-opacity duration-200"
         )}
         style={{
+          width: CURSOR_DIAMETER,
+          height: CURSOR_DIAMETER,
           zIndex: 99999,
+          backgroundColor: "#ffffff",
           mixBlendMode: "difference",
         }}
-      ></div>
+      />
       <div
-        className="w-3 h-3 rounded-full fixed translate-x-[-50%] translate-y-[-50%] pointer-events-none transition-none duration-300 z-[99999] bg-white"
+        ref={dotRef}
+        className="w-2.5 h-2.5 rounded-full fixed left-0 top-0 pointer-events-none z-[99999] opacity-0 transition-opacity duration-200"
         style={{
-          top: y,
-          left: x,
+          backgroundColor: "#ffffff",
           mixBlendMode: "difference",
+          willChange: "transform",
         }}
-      ></div>
+      />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import AceTernityLogo from "@/components/logos/aceternity";
-import SlideShow from "@/components/slide-show";
 import { Button } from "@/components/ui/button";
 import { TypographyH3, TypographyP } from "@/components/ui/typography";
 import {
@@ -43,7 +42,6 @@ import {
   SiArduino,
 } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
-import css from "styled-jsx/css";
 const BASE_PATH = "/assets/projects-screenshots";
 
 const ProjectsLinks = ({ live, repo }: { live: string; repo?: string }) => {

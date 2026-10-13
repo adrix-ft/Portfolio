@@ -9,11 +9,8 @@ import {
   ModalTrigger,
 } from "../ui/animated-modal";
 import { FloatingDock } from "../ui/floating-dock";
-import Link from "next/link";
-import SmoothScroll from "../smooth-scroll";
 import projects, { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 
 const ProjectsSection = () => {

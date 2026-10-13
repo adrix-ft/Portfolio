@@ -4,14 +4,31 @@ import React from "react";
 import Link from "next/link";
 import { config } from "@/data/config";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
 
 function Footer() {
   const year = new Date().getFullYear();
 
   const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const lenis = (window as any).__lenis;
+    const easeOutExpo = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.4, easing: easeOutExpo });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    const target = document.getElementById(hash);
+    const lenis = (window as any).__lenis;
+    const easeOutExpo = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
+    if (lenis && target) {
+      lenis.scrollTo(target, { duration: 1.4, easing: easeOutExpo });
+    } else if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -39,10 +56,10 @@ function Footer() {
           {/* Navigation Links */}
           <div className="flex flex-col gap-3 md:gap-4 col-span-1">
             <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest text-zinc-500 mb-1 md:mb-2">Explore</h4>
-            <Link href="#services" className="w-fit text-zinc-300 hover:text-white transition-colors">Services</Link>
-            <Link href="#skills" className="w-fit text-zinc-300 hover:text-white transition-colors">Skills</Link>
-            <Link href="#projects" className="w-fit text-zinc-300 hover:text-white transition-colors">Projects</Link>
-            <Link href="#contact" className="w-fit text-zinc-300 hover:text-white transition-colors">Contact</Link>
+            <Link href="#services" onClick={(e) => handleSectionClick(e, "services")} className="w-fit text-zinc-300 hover:text-white transition-colors">Services</Link>
+            <Link href="#skills" onClick={(e) => handleSectionClick(e, "skills")} className="w-fit text-zinc-300 hover:text-white transition-colors">Skills</Link>
+            <Link href="#projects" onClick={(e) => handleSectionClick(e, "projects")} className="w-fit text-zinc-300 hover:text-white transition-colors">Projects</Link>
+            <Link href="#contact" onClick={(e) => handleSectionClick(e, "contact")} className="w-fit text-zinc-300 hover:text-white transition-colors">Contact</Link>
           </div>
 
           {/* Social Links */}
@@ -79,9 +96,9 @@ function Footer() {
 
       {/* Massive Background Text */}
       <div className="w-full flex justify-center items-end pointer-events-none select-none mt-auto">
-        <h1 className="text-[11vw] font-bold tracking-tighter leading-[0.8] text-white/5 uppercase whitespace-nowrap">
+        <p aria-hidden="true" className="text-[11vw] font-bold tracking-tighter leading-[0.8] text-white/5 uppercase whitespace-nowrap">
           Adarsh Yadav
-        </h1>
+        </p>
       </div>
     </footer>
   );

@@ -5,13 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { X, ArrowUpRight } from "lucide-react";
-import { sofiaSansCondensed, splineSansMono, greatVibes } from "@/lib/fonts";
+import { greatVibes } from "@/lib/fonts";
 import { links } from "@/components/header/config";
+import { useLenis } from "@/lib/lenis";
 
 const menuSlide = {
   initial: { x: "100%" },
   enter: { x: "0%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
-  exit: { x: "100%", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }
+  exit: { x: "100%", transition: { duration: 0.45, ease: [0.76, 0, 0.24, 1] } }
 };
 
 const fade = {
@@ -43,11 +44,56 @@ interface IndexProps {
 
 const Index = ({ setIsActive }: IndexProps) => {
   const [currentHref, setCurrentHref] = useState("/");
+  const lenis = useLenis();
   
   useEffect(() => {
     if (typeof window === "undefined") return;
     setCurrentHref(window.location.pathname + window.location.hash);
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("http") || href.startsWith("mailto:")) {
+      setIsActive(false);
+      return;
+    }
+
+    const isHashLink = href.includes("#") || href === "/";
+    const isHomePage = typeof window !== "undefined" && (window.location.pathname === "/" || window.location.pathname === "");
+
+    if (isHashLink && isHomePage) {
+      e.preventDefault();
+      setIsActive(false);
+
+      const hash = href.includes("#") ? href.split("#")[1] : "";
+      const targetElement = hash ? document.getElementById(hash) : null;
+
+      if (typeof window !== "undefined") {
+        window.history.pushState(null, "", href.startsWith("/") ? href : `/${href}`);
+        setCurrentHref(window.location.pathname + window.location.hash);
+      }
+
+      // Delay slightly (120ms) so menu begins sliding away and the page scrolling motion is clearly visible!
+      setTimeout(() => {
+        const lenisInstance = lenis || (typeof window !== "undefined" ? (window as any).__lenis : null);
+        const easeOutExpo = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
+        if (lenisInstance) {
+          if (!hash || href === "/") {
+            lenisInstance.scrollTo(0, { duration: 1.4, easing: easeOutExpo });
+          } else if (targetElement) {
+            lenisInstance.scrollTo(targetElement, { duration: 1.4, easing: easeOutExpo, offset: 0 });
+          }
+        } else {
+          if (!hash || href === "/") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }, 120);
+    } else {
+      setIsActive(false);
+    }
+  };
 
   return (
     <motion.div 
@@ -99,7 +145,7 @@ const Index = ({ setIsActive }: IndexProps) => {
               <Link 
                 key={i} 
                 href={link.href}
-                onClick={() => setIsActive(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="group w-fit overflow-hidden"
               >
                 <motion.span 
@@ -152,16 +198,14 @@ const Index = ({ setIsActive }: IndexProps) => {
           </motion.div>
           
           <motion.div variants={fade} initial="initial" animate="enter" exit="exit" className="flex items-center gap-6 pt-6 border-t border-white/10 relative">
-             <Link href="#contact" onClick={() => setIsActive(false)} className="text-white/70 hover:text-white text-[12px] leading-[16px] font-bold font-sans uppercase tracking-[0.2em] transition-colors">Get in touch</Link>
+             <Link href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className="text-white/70 hover:text-white text-[12px] leading-[16px] font-bold font-sans uppercase tracking-[0.2em] transition-colors">Get in touch</Link>
              <Link href="https://docs.google.com/document/d/1KKt95Nb4_d_sik6flxJL03f-sZgrDkRJ4Txq6vtgHQg/edit?tab=t.0#heading=h.vhytaeubzzj5" target="_blank" className="text-white/70 hover:text-white text-[12px] leading-[16px] font-bold font-sans uppercase tracking-[0.2em] transition-colors">Resume</Link>
           </motion.div>
         </div>
-
-
-
       </div>
     </motion.div>
   );
 };
 
 export default Index;
+

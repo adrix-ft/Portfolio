@@ -4,13 +4,10 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import ContactForm from "../ContactForm";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { config } from "@/data/config";
 import { motion } from "framer-motion";
 

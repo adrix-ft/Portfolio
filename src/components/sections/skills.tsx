@@ -18,7 +18,7 @@ const SKILLS = [
 ];
 
 const CassetteWheel = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 100 100" className={cn("animate-spin", className)} style={{ animationDuration: '4s', animationTimingFunction: 'linear' }}>
+  <svg viewBox="0 0 100 100" className={cn("animate-spin will-change-transform", className)} style={{ animationDuration: '4s', animationTimingFunction: 'linear' }}>
     <circle cx="50" cy="50" r="48" fill="#ffffff" stroke="#e5e5e5" strokeWidth="4" />
     <circle cx="50" cy="50" r="25" fill="#f4f4f5" />
     <path d="M 50 5 L 50 35 M 89 27.5 L 63 42.5 M 89 72.5 L 63 57.5 M 50 95 L 50 65 M 11 72.5 L 37 57.5 M 11 27.5 L 37 42.5" stroke="#e5e5e5" strokeWidth="8" strokeLinecap="round" />
@@ -28,9 +28,9 @@ const CassetteWheel = ({ className }: { className?: string }) => (
 
 const CassetteCard = ({ skill, index }: { skill: any; index: number }) => {
   return (
-    <div className="relative flex flex-col items-center group w-[160px] sm:w-[240px] md:w-[300px] lg:w-[320px] xl:w-[340px] 2xl:w-[380px] m-2 sm:m-3 lg:m-4">
+    <div className="relative flex flex-col items-center group w-full max-w-[170px] min-[400px]:max-w-[185px] sm:max-w-none sm:w-[220px] md:w-[260px] lg:w-[290px] xl:w-[320px] 2xl:w-[350px]">
       {/* Hanging string */}
-      <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-[120px] sm:w-[180px] h-[48px] z-0">
+      <div className="absolute -top-10 sm:-top-12 left-1/2 -translate-x-1/2 w-[72%] sm:w-[75%] h-[40px] sm:h-[48px] z-0">
         <svg viewBox="0 0 100 50" className="w-full h-full stroke-neutral-400 stroke-[1.5] fill-none drop-shadow-sm">
           <path d="M 5 50 L 50 10 L 95 50" />
           <circle cx="50" cy="10" r="4" className="fill-neutral-600 stroke-none" />
@@ -39,7 +39,7 @@ const CassetteCard = ({ skill, index }: { skill: any; index: number }) => {
       </div>
       
       {/* Cassette Body */}
-      <div className="relative w-full aspect-[1.58] transition-transform duration-700 ease-out origin-[50%_-48px] group-hover:rotate-3 group-hover:-translate-y-1 z-10">
+      <div className="relative w-full aspect-[1.58] transition-transform duration-700 ease-out origin-[50%_-40px] sm:origin-[50%_-48px] group-hover:rotate-3 group-hover:-translate-y-1 z-10">
         
         {/* Wheels at z-5 (Behind the Cassette Image!) */}
         <div className="absolute top-[39%] left-[23.5%] w-[17%] h-[27%] flex items-center justify-center" style={{ zIndex: 5 }}>
@@ -55,7 +55,7 @@ const CassetteCard = ({ skill, index }: { skill: any; index: number }) => {
           alt="Cassette" 
           fill 
           unoptimized
-          sizes="(max-width: 640px) 220px, (max-width: 768px) 320px, 420px"
+          sizes="(max-width: 640px) 180px, (max-width: 768px) 260px, 420px"
           className="object-cover z-10 pointer-events-none drop-shadow-2xl" 
         />
         
@@ -78,17 +78,17 @@ const CassetteCard = ({ skill, index }: { skill: any; index: number }) => {
         ></div>
 
         {/* Content on the top sticker */}
-        <div className="absolute top-[16%] left-[10%] w-[80%] h-[24%] z-30 flex items-center justify-between px-3 sm:px-4">
-          <div className="w-[16px] h-[16px] sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px] relative shrink-0">
+        <div className="absolute top-[16%] left-[10%] w-[80%] h-[24%] z-30 flex items-center justify-between px-2 sm:px-4">
+          <div className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px] md:w-[28px] md:h-[28px] relative shrink-0">
             <Image src={`/assets/skills/${skill.logo}`} alt={skill.name} fill className="object-contain" />
           </div>
-          <span className="font-serif text-sm sm:text-xl md:text-2xl font-bold text-gray-800 tracking-tight truncate px-2">{skill.name}</span>
+          <span className="font-serif text-[11px] min-[380px]:text-xs sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-800 tracking-tight truncate px-1 sm:px-2">{skill.name}</span>
           <span className="text-[6px] sm:text-[8px] md:text-[10px] font-mono text-gray-600 font-bold leading-tight text-right shrink-0">A<br/>{index + 1}</span>
         </div>
         
         {/* Category on the bottom sticker */}
-        <div className="absolute bottom-[16%] left-[15%] w-[70%] h-[12%] z-30 flex items-center justify-center">
-          <span className="font-serif text-[7px] sm:text-[10px] md:text-xs font-semibold text-gray-800 tracking-wider truncate">{skill.category}</span>
+        <div className="absolute bottom-[16%] left-[12%] w-[76%] h-[12%] z-30 flex items-center justify-center px-1">
+          <span className="font-serif text-[6.5px] min-[380px]:text-[7.5px] sm:text-[10px] md:text-xs font-semibold text-gray-800 tracking-wider truncate">{skill.category}</span>
         </div>
       </div>
     </div>
@@ -99,30 +99,17 @@ const SkillsSection = () => {
   return (
     <section 
       id="skills" 
-      className="w-full min-h-screen relative flex flex-col items-center justify-center py-32 overflow-hidden"
+      className="w-full min-h-screen relative flex flex-col items-center justify-center py-24 sm:py-32 overflow-hidden"
     >
-      <style dangerouslySetInnerHTML={{ __html: ` 
-        @keyframes grain-jiggle {
-          0%, 100% { background-position: 0 0; }
-          20% { background-position: 10px 15px; }
-          40% { background-position: -15px -20px; }
-          60% { background-position: 5px -10px; }
-          80% { background-position: -5px 15px; }
-        }
-        .animate-grain {
-          animation: grain-jiggle 0.4s steps(2) infinite;
-        }
-      ` }} />
       <div 
-        className="absolute inset-0 z-0 opacity-100 dark:opacity-30 animate-grain" 
+        className="absolute inset-0 z-0 opacity-40 dark:opacity-20 pointer-events-none" 
         style={{ 
           backgroundImage: 'url(/assets/live-grain.webp)',
-          backgroundSize: '200px',
+          backgroundSize: '180px',
           backgroundRepeat: 'repeat',
-          mixBlendMode: 'multiply'
         }} 
       />
-      <div className="z-10 w-full max-w-[95vw] lg:max-w-[1400px] px-4 flex flex-col items-center">
+      <div className="z-10 w-full max-w-[95vw] lg:max-w-[1400px] px-3 sm:px-6 lg:px-8 flex flex-col items-center">
         <Link href={"#skills"}>
           <BoxReveal width="100%">
             <h2
@@ -140,7 +127,7 @@ const SkillsSection = () => {
           The tools behind the work.
         </p>
         
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-16 sm:gap-y-24 sm:gap-x-12 md:gap-y-32">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center gap-x-3 gap-y-14 sm:gap-x-8 sm:gap-y-20 md:gap-x-12 md:gap-y-28 w-full max-w-6xl justify-items-center">
           {SKILLS.map((skill, i) => (
             <CassetteCard key={skill.name} skill={skill} index={i} />
           ))}

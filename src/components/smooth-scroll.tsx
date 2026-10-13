@@ -8,29 +8,43 @@ interface LenisProps {
   isInsideModal?: boolean;
 }
 
-function SmoothScroll({ children, isInsideModal = false }: LenisProps) {
-  const lenis = useLenis(({ scroll }) => {
-    // called every scroll
-  });
+function GlobalLenisBinder() {
+  const lenis = useLenis();
+  useEffect(() => {
+    if (lenis && typeof window !== "undefined") {
+      (window as any).__lenis = lenis;
+    }
+  }, [lenis]);
+  return null;
+}
 
+function SmoothScroll({ children, isInsideModal = false }: LenisProps) {
   return (
     <ReactLenis
       root
       options={{
-        lerp: 0.08,
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
         smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.8,
         prevent: (node) => {
           if (isInsideModal) return true;
-          const modalOpen = node.classList.contains("modall");
+          const modalOpen = 
+            node.classList.contains("modall") || 
+            Boolean(node.closest("[role='dialog']")) ||
+            Boolean(node.closest("[data-lenis-prevent]"));
           return modalOpen;
         },
       }}
     >
+      <GlobalLenisBinder />
       {children}
     </ReactLenis>
   );
 }
 
 export default SmoothScroll;
+

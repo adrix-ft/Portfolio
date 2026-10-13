@@ -21,7 +21,7 @@
 ## 🚀 Features
 
 ### ✨ Interactive 3D Elements
-- **3D Keyboard Modal**: Interactive 3D keyboard rendered with Spline where each keycap reveals a skill.
+- **Cassette Tape Skills Showcase**: Interactive retro cassette tape cards representing each technical tool and stack.
 - **Floating Particles**: Space-themed background with dynamic particle effects.
 - **Smooth Animations**: Powered by Framer Motion for a seamless user experience.
 
