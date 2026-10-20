@@ -39,18 +39,49 @@ export default function ReadmeFetcher({ repo }: { repo: string }) {
 
         let text = await res.text();
         
-        // Fix relative image paths in HTML <img src="...">
-        text = text.replace(/src="([^"]+)"/g, (match, p1) => {
-          if (p1.startsWith('http') || p1.startsWith('data:')) return match;
-          const cleanPath = p1.startsWith('./') ? p1.slice(2) : p1.startsWith('/') ? p1.slice(1) : p1;
-          return `src="https://raw.githubusercontent.com/${repoPath}/${branch}/${cleanPath}"`;
+        // Helper to convert relative github path to raw github URL
+        const makeRawUrl = (url: string) => {
+          const trimmed = url.trim();
+          if (
+            trimmed.startsWith('http://') ||
+            trimmed.startsWith('https://') ||
+            trimmed.startsWith('data:') ||
+            trimmed.startsWith('#') ||
+            trimmed.startsWith('mailto:')
+          ) {
+            return trimmed;
+          }
+          const cleanPath = trimmed.startsWith('./')
+            ? trimmed.slice(2)
+            : trimmed.startsWith('/')
+            ? trimmed.slice(1)
+            : trimmed;
+          return `https://raw.githubusercontent.com/${repoPath}/${branch}/${cleanPath}`;
+        };
+
+        // Fix relative image paths in HTML srcset="..." or srcset='...' (e.g. <source> inside <picture>)
+        text = text.replace(/\bsrcset=(["'])([^"']+)\1/gi, (match, quote, p1) => {
+          const updatedSrcset = p1
+            .split(',')
+            .map((item: string) => {
+              const parts = item.trim().split(/\s+/);
+              if (parts[0]) {
+                parts[0] = makeRawUrl(parts[0]);
+              }
+              return parts.join(' ');
+            })
+            .join(', ');
+          return `srcset=${quote}${updatedSrcset}${quote}`;
         });
-        
+
+        // Fix relative image paths in HTML src="..." or src='...'
+        text = text.replace(/\bsrc=(["'])([^"']+)\1/gi, (match, quote, p1) => {
+          return `src=${quote}${makeRawUrl(p1)}${quote}`;
+        });
+
         // Fix relative image paths in Markdown ![alt](...)
         text = text.replace(/\]\(([^)]+)\)/g, (match, p1) => {
-          if (p1.startsWith('http') || p1.startsWith('data:')) return match;
-          const cleanPath = p1.startsWith('./') ? p1.slice(2) : p1.startsWith('/') ? p1.slice(1) : p1;
-          return `](https://raw.githubusercontent.com/${repoPath}/${branch}/${cleanPath})`;
+          return `](${makeRawUrl(p1)})`;
         });
 
         setContent(text);

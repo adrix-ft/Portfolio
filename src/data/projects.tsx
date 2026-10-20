@@ -34,6 +34,7 @@ import {
   SiVuedotjs,
   SiVite,
   SiNetlify,
+  SiRazorpay,
   SiHtml5,
   SiCss3,
   SiBootstrap,
@@ -236,6 +237,12 @@ const PROJECT_SKILLS = {
     fg: "white",
     icon: <SiSupabase />,
   },
+  razorpay: {
+    title: "Razorpay",
+    bg: "black",
+    fg: "white",
+    icon: <SiRazorpay />,
+  },
   // +
   vite: {
     title: "Vite",
@@ -338,6 +345,40 @@ const projects: Project[] = [
       return (
           <div className="w-full min-w-0 overflow-hidden">
             <ProjectsLinks live={this.live} repo={this.github} />
+          {this.github && <ReadmeFetcher repo={this.github} />}
+        </div>
+      );
+    },
+  },
+  {
+    id: "djn-store",
+    category: "E-commerce",
+    title: "DJN Tech Console Store",
+    src: "/assets/projects-screenshots/Adarshprojects/djn-store.png",
+    screenshots: [
+      "/assets/projects-screenshots/Adarshprojects/djn-store.png",
+    ],
+    live: "https://djntech.net/",
+    github: "https://github.com/adrix-ft/djn-store",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.framerMotion,
+        PROJECT_SKILLS.vite,
+      ],
+      backend: [
+        PROJECT_SKILLS.supabase,
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.express,
+        PROJECT_SKILLS.razorpay,
+      ],
+    },
+    get content() {
+      return (
+        <div className="w-full min-w-0 overflow-hidden">
+          <ProjectsLinks live={this.live} repo={this.github} />
           {this.github && <ReadmeFetcher repo={this.github} />}
         </div>
       );
